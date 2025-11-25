@@ -1,0 +1,539 @@
+2025-11-25 18:50:49,920 [INFO] backend.routers.admin: 🚀 Training request received - Description: Model trained via admin panel
+2025-11-25 18:50:49,921 [INFO] backend.routers.admin: 📥 CSV Source: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1764067844584.csv?alt=media&token=64c57b44-814d-49d3-be37-7ecd61d73c60
+2025-11-25 18:50:49,921 [INFO] backend.services.training_service: [PROCESS] Deactivating previous models...
+2025-11-25 18:50:51,533 [INFO] backend.services.training_service: Deactivated 1 previous model(s)
+2025-11-25 18:50:51,533 [INFO] backend.services.training_service: [START] STARTING COMPREHENSIVE BURNOUT PREDICTION TRAINING PIPELINE
+2025-11-25 18:50:51,538 [INFO] backend.services.training_service: [INPUT] Loading data from: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1764067844584.csv?alt=media&token=64c57b44-814d-49d3-be37-7ecd61d73c60 (type: url)
+2025-11-25 18:50:54,050 [INFO] backend.services.training_service: [SUCCESS] Successfully loaded CSV: 513 rows × 61 columns
+2025-11-25 18:50:54,052 [INFO] backend.services.training_service: [ANALYSIS] Performing comprehensive dataset analysis...
+2025-11-25 18:50:54,247 [INFO] backend.services.training_service: [DATA] Dataset health score: 78.7 - Good
+2025-11-25 18:50:54,249 [INFO] backend.services.training_service: Starting data cleaning and preparation...
+2025-11-25 18:50:54,250 [INFO] backend.services.training_service: [LIST] Removing metadata columns: ['timestamp', 'name_optional', 'gender', 'year_level', 'institution_school_name', 'latest_general_weighted_average_gwa_or_convert_your_last_gwa_from_highschool_grades_to_current_college_grade_form', 'how_far_is_your_home_from_school_one_way?', 'what_type_of_learning_modality_do_you_currently_attend?']
+2025-11-25 18:50:54,265 [INFO] backend.services.training_service: [SUCCESS] Data cleaned: 510 rows, 53 columns
+2025-11-25 18:50:54,266 [INFO] backend.services.training_service: Mapping Likert scale responses to numerical values...
+2025-11-25 18:50:54,305 [INFO] backend.services.training_service: [SUCCESS] Likert mapping applied to 53 columns
+2025-11-25 18:50:54,306 [INFO] backend.services.training_service: Deriving burnout labels using multi-dimensional analysis...
+2025-11-25 18:50:54,307 [INFO] backend.services.training_service: [DATA] Using 53 survey response columns
+2025-11-25 18:50:54,316 [INFO] backend.services.training_service: [SUCCESS] Burnout distribution: {'Moderate': 251, 'Low': 131, 'High': 128}
+2025-11-25 18:50:54,316 [INFO] backend.services.training_service: [CHART] Thresholds: Low ≤ 3.11, High > 3.83
+2025-11-25 18:50:54,334 [INFO] backend.services.training_service: 
+[AI] Training models with comprehensive evaluation...
+2025-11-25 18:50:54,334 [INFO] backend.services.training_service: 
+  [TRAINING] Training Random Forest...
+2025-11-25 18:50:54,335 [INFO] backend.services.training_service:      Description: Ensemble method combining multiple decision trees for robust predictions
+2025-11-25 18:50:59,932 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 91.18%
+2025-11-25 18:50:59,932 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 88.63% ± 1.59%
+2025-11-25 18:50:59,933 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-11-25 18:50:59,933 [INFO] backend.services.training_service: 
+  [TRAINING] Training Decision Tree...
+2025-11-25 18:50:59,933 [INFO] backend.services.training_service:      Description: Simple tree-based model offering high interpretability
+2025-11-25 18:51:03,650 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 71.57%
+2025-11-25 18:51:03,651 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 66.86% ± 5.59%
+2025-11-25 18:51:03,652 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Fair
+2025-11-25 18:51:03,653 [INFO] backend.services.training_service: 
+  [TRAINING] Training SVM...
+2025-11-25 18:51:03,653 [INFO] backend.services.training_service:      Description: Support Vector Machine effective in high-dimensional spaces
+2025-11-25 18:51:07,035 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 89.22%
+2025-11-25 18:51:07,036 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 91.96% ± 3.89%
+2025-11-25 18:51:07,036 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-11-25 18:51:10,160 [ERROR] backend.services.training_service: [ERROR] Enhanced training pipeline failed: keys must be str, int, float, bool or None, not ObjectDType
+Traceback (most recent call last):
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\services\training_service.py", line 2139, in train_from_csv
+    json.dump(convert_to_native_types(analytics_report), f, indent=2, ensure_ascii=False)
+  File "C:\Program Files\Python311\Lib\json\__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 377, in _iterencode_dict
+    raise TypeError(f'keys must be str, int, float, bool or None, '
+TypeError: keys must be str, int, float, bool or None, not ObjectDType
+2025-11-25 18:51:10,227 [ERROR] backend.routers.admin: ❌ Unexpected error in /admin/train
+Traceback (most recent call last):
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\routers\admin.py", line 73, in train_model
+    result = train_from_csv(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\services\training_service.py", line 2139, in train_from_csv
+    json.dump(convert_to_native_types(analytics_report), f, indent=2, ensure_ascii=False)
+  File "C:\Program Files\Python311\Lib\json\__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 377, in _iterencode_dict
+    raise TypeError(f'keys must be str, int, float, bool or None, '
+TypeError: keys must be str, int, float, bool or None, not ObjectDType
+2025-11-25 19:00:27,923 [INFO] backend.routers.admin: 🚀 Training request received - Description: Model trained via admin panel
+2025-11-25 19:00:27,925 [INFO] backend.routers.admin: 📥 CSV Source: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1764067844584.csv?alt=media&token=64c57b44-814d-49d3-be37-7ecd61d73c60
+2025-11-25 19:00:27,926 [INFO] backend.services.training_service: [PROCESS] Deactivating previous models...
+2025-11-25 19:00:29,990 [INFO] backend.services.training_service: Deactivated 0 previous model(s)
+2025-11-25 19:00:29,990 [INFO] backend.services.training_service: [START] STARTING COMPREHENSIVE BURNOUT PREDICTION TRAINING PIPELINE
+2025-11-25 19:00:29,990 [INFO] backend.services.training_service: [INPUT] Loading data from: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1764067844584.csv?alt=media&token=64c57b44-814d-49d3-be37-7ecd61d73c60 (type: url)
+2025-11-25 19:00:32,201 [INFO] backend.services.training_service: [SUCCESS] Successfully loaded CSV: 513 rows × 61 columns
+2025-11-25 19:00:32,201 [INFO] backend.services.training_service: [ANALYSIS] Performing comprehensive dataset analysis...
+2025-11-25 19:00:32,409 [ERROR] backend.services.training_service: [ERROR] Enhanced training pipeline failed: 'multicollinearity_risk'
+Traceback (most recent call last):
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\services\training_service.py", line 2102, in train_from_csv
+    dataset_analysis = data_analyzer.analyze_dataset_characteristics(df_original)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\services\training_service.py", line 747, in analyze_dataset_characteristics
+    analysis['data_health_score'] = ComprehensiveDataAnalyzer._calculate_data_health_score(analysis)
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\services\training_service.py", line 1068, in _calculate_data_health_score
+    'recommendations': ComprehensiveDataAnalyzer._generate_data_health_recommendations(overall_score, analysis)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\services\training_service.py", line 1091, in _generate_data_health_recommendations
+    if analysis['correlation_insights']['multicollinearity_risk']['multicollinearity_risk'] == 'High':
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'multicollinearity_risk'
+2025-11-25 19:00:32,412 [ERROR] backend.routers.admin: ❌ Unexpected error in /admin/train
+Traceback (most recent call last):
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\routers\admin.py", line 73, in train_model
+    result = train_from_csv(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\services\training_service.py", line 2102, in train_from_csv
+    dataset_analysis = data_analyzer.analyze_dataset_characteristics(df_original)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\services\training_service.py", line 747, in analyze_dataset_characteristics
+    analysis['data_health_score'] = ComprehensiveDataAnalyzer._calculate_data_health_score(analysis)
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\services\training_service.py", line 1068, in _calculate_data_health_score
+    'recommendations': ComprehensiveDataAnalyzer._generate_data_health_recommendations(overall_score, analysis)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\services\training_service.py", line 1091, in _generate_data_health_recommendations
+    if analysis['correlation_insights']['multicollinearity_risk']['multicollinearity_risk'] == 'High':
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'multicollinearity_risk'
+2025-11-25 19:04:31,227 [INFO] backend.routers.admin: 🚀 Training request received - Description: Model trained via admin panel
+2025-11-25 19:04:31,227 [INFO] backend.routers.admin: 📥 CSV Source: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1764068666831.csv?alt=media&token=c32ed569-57b5-48c4-a3d6-97b79080fa9a
+2025-11-25 19:04:31,228 [INFO] backend.services.training_service: [PROCESS] Deactivating previous models...
+2025-11-25 19:04:32,391 [INFO] backend.services.training_service: Deactivated 0 previous model(s)
+2025-11-25 19:04:32,391 [INFO] backend.services.training_service: [START] STARTING COMPREHENSIVE BURNOUT PREDICTION TRAINING PIPELINE
+2025-11-25 19:04:32,392 [INFO] backend.services.training_service: [INPUT] Loading data from: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1764068666831.csv?alt=media&token=c32ed569-57b5-48c4-a3d6-97b79080fa9a (type: url)
+2025-11-25 19:04:34,574 [INFO] backend.services.training_service: [SUCCESS] Successfully loaded CSV: 513 rows × 61 columns
+2025-11-25 19:04:34,575 [INFO] backend.services.training_service: [ANALYSIS] Performing comprehensive dataset analysis...
+2025-11-25 19:04:34,785 [INFO] backend.services.training_service: [DATA] Dataset health score: 78.7 - Good
+2025-11-25 19:04:34,785 [INFO] backend.services.training_service: Starting data cleaning and preparation...
+2025-11-25 19:04:34,787 [INFO] backend.services.training_service: [LIST] Removing metadata columns: ['timestamp', 'name_optional', 'gender', 'year_level', 'institution_school_name', 'latest_general_weighted_average_gwa_or_convert_your_last_gwa_from_highschool_grades_to_current_college_grade_form', 'how_far_is_your_home_from_school_one_way?', 'what_type_of_learning_modality_do_you_currently_attend?']
+2025-11-25 19:04:34,807 [INFO] backend.services.training_service: [SUCCESS] Data cleaned: 510 rows, 53 columns
+2025-11-25 19:04:34,807 [INFO] backend.services.training_service: Mapping Likert scale responses to numerical values...
+2025-11-25 19:04:34,845 [INFO] backend.services.training_service: [SUCCESS] Likert mapping applied to 53 columns
+2025-11-25 19:04:34,846 [INFO] backend.services.training_service: Deriving burnout labels using multi-dimensional analysis...
+2025-11-25 19:04:34,847 [INFO] backend.services.training_service: [DATA] Using 53 survey response columns
+2025-11-25 19:04:34,852 [INFO] backend.services.training_service: [SUCCESS] Burnout distribution: {'Moderate': 251, 'Low': 131, 'High': 128}
+2025-11-25 19:04:34,852 [INFO] backend.services.training_service: [CHART] Thresholds: Low ≤ 3.11, High > 3.83
+2025-11-25 19:04:34,875 [INFO] backend.services.training_service: 
+[AI] Training models with comprehensive evaluation...
+2025-11-25 19:04:34,875 [INFO] backend.services.training_service: 
+  [TRAINING] Training Random Forest...
+2025-11-25 19:04:34,875 [INFO] backend.services.training_service:      Description: Ensemble method combining multiple decision trees for robust predictions
+2025-11-25 19:04:40,061 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 91.18%
+2025-11-25 19:04:40,061 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 88.63% ± 1.59%
+2025-11-25 19:04:40,062 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-11-25 19:04:40,062 [INFO] backend.services.training_service: 
+  [TRAINING] Training Decision Tree...
+2025-11-25 19:04:40,063 [INFO] backend.services.training_service:      Description: Simple tree-based model offering high interpretability
+2025-11-25 19:04:43,510 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 71.57%
+2025-11-25 19:04:43,511 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 66.86% ± 5.59%
+2025-11-25 19:04:43,511 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Fair
+2025-11-25 19:04:43,512 [INFO] backend.services.training_service: 
+  [TRAINING] Training SVM...
+2025-11-25 19:04:43,512 [INFO] backend.services.training_service:      Description: Support Vector Machine effective in high-dimensional spaces
+2025-11-25 19:04:46,053 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 89.22%
+2025-11-25 19:04:46,054 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 91.96% ± 3.89%
+2025-11-25 19:04:46,054 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-11-25 19:04:49,666 [ERROR] backend.services.training_service: [ERROR] Enhanced training pipeline failed: keys must be str, int, float, bool or None, not ObjectDType
+Traceback (most recent call last):
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\services\training_service.py", line 2312, in train_from_csv
+    json.dump(convert_to_native_types(analytics_report), f, indent=2, ensure_ascii=False)
+  File "C:\Program Files\Python311\Lib\json\__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 377, in _iterencode_dict
+    raise TypeError(f'keys must be str, int, float, bool or None, '
+TypeError: keys must be str, int, float, bool or None, not ObjectDType
+2025-11-25 19:04:49,675 [ERROR] backend.routers.admin: ❌ Unexpected error in /admin/train
+Traceback (most recent call last):
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\routers\admin.py", line 73, in train_model
+    result = train_from_csv(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\services\training_service.py", line 2312, in train_from_csv
+    json.dump(convert_to_native_types(analytics_report), f, indent=2, ensure_ascii=False)
+  File "C:\Program Files\Python311\Lib\json\__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Program Files\Python311\Lib\json\encoder.py", line 377, in _iterencode_dict
+    raise TypeError(f'keys must be str, int, float, bool or None, '
+TypeError: keys must be str, int, float, bool or None, not ObjectDType
+2025-11-25 19:27:01,338 [INFO] backend.routers.admin: 🚀 Training request received - Description: Model trained via admin panel
+2025-11-25 19:27:01,338 [INFO] backend.routers.admin: 📥 CSV Source: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1764068666831.csv?alt=media&token=c32ed569-57b5-48c4-a3d6-97b79080fa9a
+2025-11-25 19:27:01,338 [INFO] backend.services.training_service: [PROCESS] Deactivating previous models...
+2025-11-25 19:27:03,186 [INFO] backend.services.training_service: Deactivated 0 previous model(s)
+2025-11-25 19:27:03,186 [INFO] backend.services.training_service: [START] STARTING COMPREHENSIVE BURNOUT PREDICTION TRAINING PIPELINE
+2025-11-25 19:27:03,187 [INFO] backend.services.training_service: [INPUT] Loading data from: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1764068666831.csv?alt=media&token=c32ed569-57b5-48c4-a3d6-97b79080fa9a (type: url)
+2025-11-25 19:27:05,501 [INFO] backend.services.training_service: [SUCCESS] Successfully loaded CSV: 513 rows × 61 columns
+2025-11-25 19:27:05,503 [INFO] backend.services.training_service: [ANALYSIS] Performing comprehensive dataset analysis...
+2025-11-25 19:27:05,635 [INFO] backend.services.training_service: [DATA] Dataset health score: 78.7 - Good
+2025-11-25 19:27:05,635 [INFO] backend.services.training_service: Starting data cleaning and preparation...
+2025-11-25 19:27:05,637 [INFO] backend.services.training_service: [LIST] Removing metadata columns: ['timestamp', 'name_optional', 'gender', 'year_level', 'institution_school_name', 'latest_general_weighted_average_gwa_or_convert_your_last_gwa_from_highschool_grades_to_current_college_grade_form', 'how_far_is_your_home_from_school_one_way?', 'what_type_of_learning_modality_do_you_currently_attend?']
+2025-11-25 19:27:05,647 [INFO] backend.services.training_service: [SUCCESS] Data cleaned: 510 rows, 53 columns
+2025-11-25 19:27:05,647 [INFO] backend.services.training_service: Mapping Likert scale responses to numerical values...
+2025-11-25 19:27:05,672 [INFO] backend.services.training_service: [SUCCESS] Likert mapping applied to 53 columns
+2025-11-25 19:27:05,672 [INFO] backend.services.training_service: Deriving burnout labels using multi-dimensional analysis...
+2025-11-25 19:27:05,673 [INFO] backend.services.training_service: [DATA] Using 53 survey response columns
+2025-11-25 19:27:05,676 [INFO] backend.services.training_service: [SUCCESS] Burnout distribution: {'Moderate': 251, 'Low': 131, 'High': 128}
+2025-11-25 19:27:05,676 [INFO] backend.services.training_service: [CHART] Thresholds: Low ≤ 3.11, High > 3.83
+2025-11-25 19:27:05,689 [INFO] backend.services.training_service: 
+[AI] Training models with comprehensive evaluation...
+2025-11-25 19:27:05,689 [INFO] backend.services.training_service: 
+  [TRAINING] Training Random Forest...
+2025-11-25 19:27:05,689 [INFO] backend.services.training_service:      Description: Ensemble method combining multiple decision trees for robust predictions
+2025-11-25 19:27:11,610 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 91.18%
+2025-11-25 19:27:11,611 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 88.63% ± 1.59%
+2025-11-25 19:27:11,612 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-11-25 19:27:11,612 [INFO] backend.services.training_service: 
+  [TRAINING] Training Decision Tree...
+2025-11-25 19:27:11,612 [INFO] backend.services.training_service:      Description: Simple tree-based model offering high interpretability
+2025-11-25 19:27:15,166 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 71.57%
+2025-11-25 19:27:15,167 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 66.86% ± 5.59%
+2025-11-25 19:27:15,168 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Fair
+2025-11-25 19:27:15,168 [INFO] backend.services.training_service: 
+  [TRAINING] Training SVM...
+2025-11-25 19:27:15,169 [INFO] backend.services.training_service:      Description: Support Vector Machine effective in high-dimensional spaces
+2025-11-25 19:27:17,792 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 89.22%
+2025-11-25 19:27:17,792 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 91.96% ± 3.89%
+2025-11-25 19:27:17,793 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-11-25 19:27:22,417 [INFO] backend.services.training_service: [SAVE] Analytics report saved successfully: analytics\training_analytics_v4.json
+2025-11-25 19:27:22,418 [INFO] backend.services.training_service: 
+================================================================================
+2025-11-25 19:27:22,418 [INFO] backend.services.training_service: [SUCCESS] COMPREHENSIVE TRAINING COMPLETE
+2025-11-25 19:27:22,419 [INFO] backend.services.training_service: ================================================================================
+2025-11-25 19:27:22,419 [INFO] backend.services.training_service: [PACKAGE] Model Version: 4
+2025-11-25 19:27:22,420 [INFO] backend.services.training_service: [BEST] Best Model: Random Forest
+2025-11-25 19:27:22,420 [INFO] backend.services.training_service: [TARGET] Test Accuracy: 91.18%
+2025-11-25 19:27:22,420 [INFO] backend.services.training_service: [CHART] Performance Tier: Excellent
+2025-11-25 19:27:22,421 [INFO] backend.services.training_service: [ANALYSIS] Top Predictor: home_environment_and_personal_stress_my_home_environment_is_noisy_or_stressful_making_it_hard_to_study.
+2025-11-25 19:27:22,421 [INFO] backend.services.training_service: [DATA] Dataset Quality: Excellent
+2025-11-25 19:27:22,421 [INFO] backend.services.training_service: [INSIGHT] Deployment Recommendation: Ready for production deployment
+2025-11-25 19:27:22,422 [INFO] backend.services.training_service: ================================================================================
+2025-11-25 19:33:58,164 [ERROR] backend.services.model_service: Failed to delete directory data\backups
+Traceback (most recent call last):
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\services\model_service.py", line 386, in hard_reset
+    shutil.rmtree(file)
+    ^^^^^^
+UnboundLocalError: cannot access local variable 'shutil' where it is not associated with a value
+2025-11-25 19:33:58,170 [INFO] backend.services.model_service: 🧹 Cleaned local data folder (kept burnout.data).
+2025-11-25 19:34:00,034 [ERROR] backend.services.model_service: Failed to clean Firebase Storage: Storage bucket name not specified. Specify the bucket name via the "storageBucket" option when initializing the App, or specify the bucket name explicitly when calling the storage.bucket() function.
+Traceback (most recent call last):
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\services\model_service.py", line 410, in hard_reset
+    bucket = storage.bucket()
+             ^^^^^^^^^^^^^^^^
+  File "C:\Users\Jannray\Documents\python\burnout-system\venv\Lib\site-packages\firebase_admin\storage.py", line 52, in bucket
+    return client.bucket(name)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jannray\Documents\python\burnout-system\venv\Lib\site-packages\firebase_admin\storage.py", line 79, in bucket
+    raise ValueError(
+ValueError: Storage bucket name not specified. Specify the bucket name via the "storageBucket" option when initializing the App, or specify the bucket name explicitly when calling the storage.bucket() function.
+2025-11-25 19:34:37,952 [INFO] backend.routers.admin: 🚀 Training request received - Description: Model trained via admin panel
+2025-11-25 19:34:37,952 [INFO] backend.routers.admin: 📥 CSV Source: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1764070472485.csv?alt=media&token=fa8d1e1a-e367-4940-ab40-987b604ad0ba
+2025-11-25 19:34:37,952 [INFO] backend.services.training_service: [PROCESS] Deactivating previous models...
+2025-11-25 19:34:38,186 [INFO] backend.services.training_service: Deactivated 0 previous model(s)
+2025-11-25 19:34:38,186 [INFO] backend.services.training_service: [START] STARTING COMPREHENSIVE BURNOUT PREDICTION TRAINING PIPELINE
+2025-11-25 19:34:38,186 [INFO] backend.services.training_service: [INPUT] Loading data from: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1764070472485.csv?alt=media&token=fa8d1e1a-e367-4940-ab40-987b604ad0ba (type: url)
+2025-11-25 19:34:40,171 [INFO] backend.services.training_service: [SUCCESS] Successfully loaded CSV: 513 rows × 61 columns
+2025-11-25 19:34:40,172 [INFO] backend.services.training_service: [ANALYSIS] Performing comprehensive dataset analysis...
+2025-11-25 19:34:40,360 [INFO] backend.services.training_service: [DATA] Dataset health score: 78.7 - Good
+2025-11-25 19:34:40,360 [INFO] backend.services.training_service: Starting data cleaning and preparation...
+2025-11-25 19:34:40,361 [INFO] backend.services.training_service: [LIST] Removing metadata columns: ['timestamp', 'name_optional', 'gender', 'year_level', 'institution_school_name', 'latest_general_weighted_average_gwa_or_convert_your_last_gwa_from_highschool_grades_to_current_college_grade_form', 'how_far_is_your_home_from_school_one_way?', 'what_type_of_learning_modality_do_you_currently_attend?']
+2025-11-25 19:34:40,371 [INFO] backend.services.training_service: [SUCCESS] Data cleaned: 510 rows, 53 columns
+2025-11-25 19:34:40,373 [INFO] backend.services.training_service: Mapping Likert scale responses to numerical values...
+2025-11-25 19:34:40,418 [INFO] backend.services.training_service: [SUCCESS] Likert mapping applied to 53 columns
+2025-11-25 19:34:40,418 [INFO] backend.services.training_service: Deriving burnout labels using multi-dimensional analysis...
+2025-11-25 19:34:40,419 [INFO] backend.services.training_service: [DATA] Using 53 survey response columns
+2025-11-25 19:34:40,424 [INFO] backend.services.training_service: [SUCCESS] Burnout distribution: {'Moderate': 251, 'Low': 131, 'High': 128}
+2025-11-25 19:34:40,425 [INFO] backend.services.training_service: [CHART] Thresholds: Low ≤ 3.11, High > 3.83
+2025-11-25 19:34:40,438 [INFO] backend.services.training_service: 
+[AI] Training models with comprehensive evaluation...
+2025-11-25 19:34:40,439 [INFO] backend.services.training_service: 
+  [TRAINING] Training Random Forest...
+2025-11-25 19:34:40,439 [INFO] backend.services.training_service:      Description: Ensemble method combining multiple decision trees for robust predictions
+2025-11-25 19:34:44,034 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 91.18%
+2025-11-25 19:34:44,034 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 88.63% ± 1.59%
+2025-11-25 19:34:44,035 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-11-25 19:34:44,035 [INFO] backend.services.training_service: 
+  [TRAINING] Training Decision Tree...
+2025-11-25 19:34:44,035 [INFO] backend.services.training_service:      Description: Simple tree-based model offering high interpretability
+2025-11-25 19:34:46,357 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 71.57%
+2025-11-25 19:34:46,358 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 66.86% ± 5.59%
+2025-11-25 19:34:46,358 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Fair
+2025-11-25 19:34:46,358 [INFO] backend.services.training_service: 
+  [TRAINING] Training SVM...
+2025-11-25 19:34:46,358 [INFO] backend.services.training_service:      Description: Support Vector Machine effective in high-dimensional spaces
+2025-11-25 19:34:48,456 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 89.22%
+2025-11-25 19:34:48,456 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 91.96% ± 3.89%
+2025-11-25 19:34:48,457 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-11-25 19:34:52,402 [INFO] backend.services.training_service: [SAVE] Analytics report saved successfully: analytics\training_analytics_v1.json
+2025-11-25 19:34:52,403 [INFO] backend.services.training_service: 
+================================================================================
+2025-11-25 19:34:52,403 [INFO] backend.services.training_service: [SUCCESS] COMPREHENSIVE TRAINING COMPLETE
+2025-11-25 19:34:52,403 [INFO] backend.services.training_service: ================================================================================
+2025-11-25 19:34:52,403 [INFO] backend.services.training_service: [PACKAGE] Model Version: 1
+2025-11-25 19:34:52,404 [INFO] backend.services.training_service: [BEST] Best Model: Random Forest
+2025-11-25 19:34:52,404 [INFO] backend.services.training_service: [TARGET] Test Accuracy: 91.18%
+2025-11-25 19:34:52,405 [INFO] backend.services.training_service: [CHART] Performance Tier: Excellent
+2025-11-25 19:34:52,405 [INFO] backend.services.training_service: [ANALYSIS] Top Predictor: home_environment_and_personal_stress_my_home_environment_is_noisy_or_stressful_making_it_hard_to_study.
+2025-11-25 19:34:52,407 [INFO] backend.services.training_service: [DATA] Dataset Quality: Excellent
+2025-11-25 19:34:52,407 [INFO] backend.services.training_service: [INSIGHT] Deployment Recommendation: Ready for production deployment
+2025-11-25 19:34:52,407 [INFO] backend.services.training_service: ================================================================================
+2025-11-25 19:45:08,703 [INFO] backend.routers.admin: 🚀 Training request received - Description: Model trained via admin panel
+2025-11-25 19:45:08,704 [INFO] backend.routers.admin: 📥 CSV Source: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1764071098826.csv?alt=media&token=8d2af50e-43ee-4775-8920-cbde6a61a3ba
+2025-11-25 19:45:08,704 [INFO] backend.services.training_service: [PROCESS] Deactivating previous models...
+2025-11-25 19:45:10,845 [INFO] backend.services.training_service: Deactivated 0 previous model(s)
+2025-11-25 19:45:10,846 [INFO] backend.services.training_service: [START] STARTING COMPREHENSIVE BURNOUT PREDICTION TRAINING PIPELINE
+2025-11-25 19:45:10,846 [INFO] backend.services.training_service: [INPUT] Loading data from: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1764071098826.csv?alt=media&token=8d2af50e-43ee-4775-8920-cbde6a61a3ba (type: url)
+2025-11-25 19:45:12,924 [INFO] backend.services.training_service: [SUCCESS] Successfully loaded CSV: 513 rows × 61 columns
+2025-11-25 19:45:12,926 [INFO] backend.services.training_service: [ANALYSIS] Performing comprehensive dataset analysis...
+2025-11-25 19:45:13,090 [INFO] backend.services.training_service: [DATA] Dataset health score: 78.7 - Good
+2025-11-25 19:45:13,090 [INFO] backend.services.training_service: Starting data cleaning and preparation...
+2025-11-25 19:45:13,091 [INFO] backend.services.training_service: [LIST] Removing metadata columns: ['timestamp', 'name_optional', 'gender', 'year_level', 'institution_school_name', 'latest_general_weighted_average_gwa_or_convert_your_last_gwa_from_highschool_grades_to_current_college_grade_form', 'how_far_is_your_home_from_school_one_way?', 'what_type_of_learning_modality_do_you_currently_attend?']
+2025-11-25 19:45:13,105 [INFO] backend.services.training_service: [SUCCESS] Data cleaned: 510 rows, 53 columns
+2025-11-25 19:45:13,105 [INFO] backend.services.training_service: Mapping Likert scale responses to numerical values...
+2025-11-25 19:45:13,152 [INFO] backend.services.training_service: [SUCCESS] Likert mapping applied to 53 columns
+2025-11-25 19:45:13,152 [INFO] backend.services.training_service: Deriving burnout labels using multi-dimensional analysis...
+2025-11-25 19:45:13,153 [INFO] backend.services.training_service: [DATA] Using 53 survey response columns
+2025-11-25 19:45:13,158 [INFO] backend.services.training_service: [SUCCESS] Burnout distribution: {'Moderate': 251, 'Low': 131, 'High': 128}
+2025-11-25 19:45:13,158 [INFO] backend.services.training_service: [CHART] Thresholds: Low ≤ 3.11, High > 3.83
+2025-11-25 19:45:13,172 [INFO] backend.services.training_service: 
+[AI] Training models with comprehensive evaluation...
+2025-11-25 19:45:13,173 [INFO] backend.services.training_service: 
+  [TRAINING] Training Random Forest...
+2025-11-25 19:45:13,173 [INFO] backend.services.training_service:      Description: Ensemble method combining multiple decision trees for robust predictions
+2025-11-25 19:45:17,545 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 91.18%
+2025-11-25 19:45:17,545 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 88.63% ± 1.59%
+2025-11-25 19:45:17,545 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-11-25 19:45:17,547 [INFO] backend.services.training_service: 
+  [TRAINING] Training Decision Tree...
+2025-11-25 19:45:17,547 [INFO] backend.services.training_service:      Description: Simple tree-based model offering high interpretability
+2025-11-25 19:45:21,479 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 71.57%
+2025-11-25 19:45:21,480 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 66.86% ± 5.59%
+2025-11-25 19:45:21,480 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Fair
+2025-11-25 19:45:21,481 [INFO] backend.services.training_service: 
+  [TRAINING] Training SVM...
+2025-11-25 19:45:21,481 [INFO] backend.services.training_service:      Description: Support Vector Machine effective in high-dimensional spaces
+2025-11-25 19:45:24,262 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 89.22%
+2025-11-25 19:45:24,263 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 91.96% ± 3.89%
+2025-11-25 19:45:24,263 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-11-25 19:45:28,045 [INFO] backend.services.training_service: [SAVE] Analytics report saved successfully: analytics\training_analytics_v2.json
+2025-11-25 19:45:28,045 [INFO] backend.services.training_service: [CLOUD] Uploading artifacts to Firebase...
+2025-11-25 19:45:31,329 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: analytics/training_analytics_v2.json
+2025-11-25 19:45:34,134 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: models/v2/burnout_v2.pkl
+2025-11-25 19:45:36,809 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: models/v2/burnout_latest.pkl
+2025-11-25 19:45:38,120 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: models/v2/preprocessor_latest.pkl
+2025-11-25 19:45:40,506 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v2/comprehensive_confusion_matrix.png
+2025-11-25 19:45:42,180 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v2/model_analysis_dashboard.png
+2025-11-25 19:45:44,107 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v2/data_quality_analysis.png
+2025-11-25 19:45:44,108 [INFO] backend.services.training_service: [CLOUD] All artifacts uploaded for version 2
+2025-11-25 19:45:44,115 [WARNING] backend.services.training_service: [WARNING] Error converting type <class 'list'> to native: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-11-25 19:45:44,115 [WARNING] backend.services.training_service: [WARNING] Error converting type <class 'list'> to native: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-11-25 19:45:44,413 [INFO] backend.services.training_service: [FIRE] Model saved to Firestore: nPYHTEbhSZOwZNKJIhAN
+2025-11-25 19:45:44,413 [INFO] backend.services.training_service: [FIRE] Model metadata saved to Firestore with ID: nPYHTEbhSZOwZNKJIhAN
+2025-11-25 19:45:44,413 [INFO] backend.services.training_service: 
+================================================================================
+2025-11-25 19:45:44,413 [INFO] backend.services.training_service: [SUCCESS] COMPREHENSIVE TRAINING COMPLETE
+2025-11-25 19:45:44,414 [INFO] backend.services.training_service: ================================================================================
+2025-11-25 19:45:44,414 [INFO] backend.services.training_service: [PACKAGE] Model Version: 2
+2025-11-25 19:45:44,414 [INFO] backend.services.training_service: [BEST] Best Model: Random Forest
+2025-11-25 19:45:44,415 [INFO] backend.services.training_service: [TARGET] Test Accuracy: 91.18%
+2025-11-25 19:45:44,415 [INFO] backend.services.training_service: [CHART] Performance Tier: Excellent
+2025-11-25 19:45:44,415 [INFO] backend.services.training_service: [ANALYSIS] Top Predictor: home_environment_and_personal_stress_my_home_environment_is_noisy_or_stressful_making_it_hard_to_study.
+2025-11-25 19:45:44,416 [INFO] backend.services.training_service: [DATA] Dataset Quality: Excellent
+2025-11-25 19:45:44,416 [INFO] backend.services.training_service: [INSIGHT] Deployment Recommendation: Ready for production deployment
+2025-11-25 19:45:44,416 [INFO] backend.services.training_service: ================================================================================
+2025-11-25 19:51:05,743 [INFO] backend.routers.predict: ================================================================================
+2025-11-25 19:51:05,745 [INFO] backend.routers.predict: NEW PREDICTION REQUEST
+2025-11-25 19:51:05,745 [INFO] backend.routers.predict: ================================================================================
+2025-11-25 19:51:05,746 [INFO] backend.routers.predict: 📊 Field Mapping Summary:
+2025-11-25 19:51:05,746 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-11-25 19:51:05,746 [INFO] backend.routers.predict:    Mapped features: 52
+2025-11-25 19:51:05,747 [INFO] backend.routers.predict:    Required fields present: 60
+2025-11-25 19:51:05,747 [INFO] backend.routers.predict: ✅ Validation passed
+2025-11-25 19:51:05,747 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-11-25 19:51:05,748 [INFO] backend.routers.predict:    Mapped features: 52
+2025-11-25 19:51:05,748 [INFO] backend.routers.predict: 📝 Sample Mapped Data (first 10 features):
+2025-11-25 19:51:05,748 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_find_my_academic_workload_unmanageable.: 5
+2025-11-25 19:51:05,748 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_confident_in_handling_school_challenges.: 5
+2025-11-25 19:51:05,748 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_experience_conflicts_or_tension_at_home.: 5
+2025-11-25 19:51:05,749 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_the_current_mode_of_learning_affects_my_academic_motivation_and_performance.: 1
+2025-11-25 19:51:05,749 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_find_it_difficult_to_fall_asleep_because_of_academic_stress.: 2
+2025-11-25 19:51:05,749 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_emotionally_drained_at_the_end_of_the_school_day.: 2
+2025-11-25 19:51:05,750 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_emotionally_unsupported_by_my_family.: 3
+2025-11-25 19:51:05,750 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_family_does_not_understand_or_acknowledge_my_academic_struggles.: 5
+2025-11-25 19:51:05,750 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_burned_out_even_when_i_try_to_rest.: 2
+2025-11-25 19:51:05,751 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_competent_in_the_subjects_i�m_studying.: 4
+2025-11-25 19:51:05,751 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_disconnected_from_my_academic_community.: 5
+2025-11-25 19:51:05,751 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_helpless_when_i_think_about_my_academic_performance.: 2
+2025-11-25 19:51:05,753 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_feel_in_control_of_how_i_manage_my_time.: 2
+2025-11-25 19:51:05,753 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_isolated_or_alone_in_my_academic_journey.: 1
+2025-11-25 19:51:05,753 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_sometimes_feel_like_giving_up_on_my_academic_goals.: 5
+2025-11-25 19:51:05,754 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_feel_more_isolated_in_online_or_hybrid_learning_environments.: 2
+2025-11-25 19:51:05,754 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_am_currently_experiencing_financial_difficulties_that_affect_my_studies.: 5
+2025-11-25 19:51:05,754 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_usually_finish_tasks_right_before_the_deadline.: 4
+2025-11-25 19:51:05,754 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_experience_frequent_headaches_or_fatigue_during_the_semester.: 4
+2025-11-25 19:51:05,755 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_find_it_hard_to_feel_excited_about_academic_tasks.: 1
+2025-11-25 19:51:05,755 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_find_it_hard_to_maintain_a_consistent_daily_routine.: 1
+2025-11-25 19:51:05,755 [INFO] backend.routers.predict:    social_support_and_isolation_i_hesitate_to_ask_for_help_from_peers_or_instructors.: 5
+2025-11-25 19:51:05,755 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_get_irritated_or_frustrated_easily_because_of_school_pressure.: 3
+2025-11-25 19:51:05,755 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_my_learning_setup_online_hybrid_or_in_person_contributes_to_my_academic_stress.: 1
+2025-11-25 19:51:05,755 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_long_commutes_to_school_contribute_to_my_stress_and_burnout.: 5
+2025-11-25 19:51:05,756 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_lose_motivation_after_a_long_commute: 1
+2025-11-25 19:51:05,756 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_sometimes_miss_schoolwork_due_to_family_responsibilities.: 1
+2025-11-25 19:51:05,756 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_multitask_to_meet_academic_deadlines.: 4
+2025-11-25 19:51:05,756 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_home_environment_is_noisy_or_stressful_making_it_hard_to_study.: 5
+2025-11-25 19:51:05,756 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_like_i_am_not_accomplishing_anything_worthwhile_in_school.: 1
+2025-11-25 19:51:05,756 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_that_my_personal_or_home_life_affects_my_academic_performance.: 5
+2025-11-25 19:51:05,756 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_feel_physically_exhausted_even_after_taking_a_rest.: 3
+2025-11-25 19:51:05,756 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_prefer_my_current_learning_modality_over_other_options.: 1
+2025-11-25 19:51:05,757 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_often_feel_pressure_to_support_my_family_financially.: 3
+2025-11-25 19:51:05,757 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_proud_of_my_academic_achievements: 5
+2025-11-25 19:51:05,757 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_often_question_whether_my_efforts_in_school_are_worth_it.: 1
+2025-11-25 19:51:05,757 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_rarely_have_free_time_because_of_school_responsibilities.: 5
+2025-11-25 19:51:05,757 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_sacrifice_sleep_to_finish_schoolwork: 4
+2025-11-25 19:51:05,757 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_a_sense_of_dread_before_starting_school_related_task: 4
+2025-11-25 19:51:05,758 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_skip_meals_due_to_my_school_workload_or_stress.: 3
+2025-11-25 19:51:05,758 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_usually_get_less_than_6_hours_of_sleep_on_school_nights.: 5
+2025-11-25 19:51:05,758 [INFO] backend.routers.predict:    social_support_and_isolation_i_have_someone_to_talk_to_when_i_feel_burned_out.: 4
+2025-11-25 19:51:05,758 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_often_struggle_to_balance_school_and_personal_responsibilities.: 5
+2025-11-25 19:51:05,758 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_struggle_to_organize_my_academic_tasks.: 2
+2025-11-25 19:51:05,758 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_usually_study_under_pressure_or_in_last_minute_situations.: 2
+2025-11-25 19:51:05,758 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_supported_by_my_family_when_i_feel_stressed_about_school.: 2
+2025-11-25 19:51:05,759 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_traveling_to_school_affects_my_energy_and_academic_performance._: 3
+2025-11-25 19:51:05,759 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_i_am_underperforming_compared_to_my_peers: 2
+2025-11-25 19:51:05,759 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_use_a_planner_or_schedule_to_track_deadlines.: 2
+2025-11-25 19:51:05,759 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_wake_up_feeling_tired_or_unrefreshed.: 4
+2025-11-25 19:51:05,759 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_waste_time_before_starting_my_schoolwork.: 1
+2025-11-25 19:51:05,759 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_believe_my_workload_is_heavier_than_that_of_my_peers.: 3
+2025-11-25 19:51:07,091 [INFO] backend.routers.predict: 📝 Frontend request logged: ERvlOlkwxWsSHXEovSGK
+2025-11-25 19:51:07,092 [INFO] backend.routers.predict: 🚀 Running prediction with mapped features...
+2025-11-25 19:51:07,093 [INFO] backend.services.prediction_service: Loading model and preprocessor...
+2025-11-25 19:51:07,093 [INFO] backend.services.prediction_service: Fetching active model from Firebase...
+2025-11-25 19:51:07,356 [WARNING] backend.services.prediction_service: Could not load model from Firebase: 400 The query requires an index. You can create it here: https://console.firebase.google.com/v1/r/project/burnout-system/firestore/indexes?create_composite=Ck1wcm9qZWN0cy9idXJub3V0LXN5c3RlbS9kYXRhYmFzZXMvKGRlZmF1bHQpL2NvbGxlY3Rpb25Hcm91cHMvbW9kZWxzL2luZGV4ZXMvXxABGgoKBmFjdGl2ZRABGg4KCnRyYWluZWRfYXQQAhoMCghfX25hbWVfXxAC. Falling back to local files.
+2025-11-25 19:51:07,357 [INFO] backend.services.prediction_service: Loading model from local files...
+2025-11-25 19:51:07,416 [INFO] backend.services.prediction_service: Model loaded successfully from local: RandomForestClassifier
+2025-11-25 19:51:07,416 [INFO] backend.services.prediction_service: Model loaded: RandomForestClassifier
+2025-11-25 19:51:07,416 [INFO] backend.services.prediction_service: Normalizing 52 input features...
+2025-11-25 19:51:07,417 [INFO] backend.services.prediction_service: Normalized to 52 features
+2025-11-25 19:51:07,417 [INFO] backend.services.prediction_service: Running prediction...
+2025-11-25 19:51:07,505 [INFO] backend.services.prediction_service: Prediction: Moderate (44.6% confidence)
+2025-11-25 19:51:07,506 [INFO] backend.services.prediction_service: Generating detailed analysis report...
+2025-11-25 19:51:08,573 [INFO] backend.services.prediction_service: Prediction logged: xSaGH1Aq5OStXoiHzbBL
+2025-11-25 19:51:08,573 [INFO] backend.services.prediction_service: Prediction completed in 0.476s
+2025-11-25 19:51:08,574 [INFO] backend.routers.predict: ✅ Prediction successful: Moderate (confidence: 44.6%)
+2025-11-25 19:51:08,575 [INFO] backend.routers.predict: ================================================================================
+2025-11-25 19:51:08,575 [INFO] backend.routers.predict: ✅ PREDICTION COMPLETE
+2025-11-25 19:51:08,575 [INFO] backend.routers.predict: ================================================================================
+2025-11-25 19:52:15,255 [INFO] backend.routers.predict: ================================================================================
+2025-11-25 19:52:15,255 [INFO] backend.routers.predict: NEW PREDICTION REQUEST
+2025-11-25 19:52:15,256 [INFO] backend.routers.predict: ================================================================================
+2025-11-25 19:52:15,256 [INFO] backend.routers.predict: 📊 Field Mapping Summary:
+2025-11-25 19:52:15,257 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-11-25 19:52:15,257 [INFO] backend.routers.predict:    Mapped features: 52
+2025-11-25 19:52:15,257 [INFO] backend.routers.predict:    Required fields present: 60
+2025-11-25 19:52:15,258 [INFO] backend.routers.predict: ✅ Validation passed
+2025-11-25 19:52:15,258 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-11-25 19:52:15,258 [INFO] backend.routers.predict:    Mapped features: 52
+2025-11-25 19:52:15,258 [INFO] backend.routers.predict: 📝 Sample Mapped Data (first 10 features):
+2025-11-25 19:52:15,258 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_find_my_academic_workload_unmanageable.: 5
+2025-11-25 19:52:15,258 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_confident_in_handling_school_challenges.: 1
+2025-11-25 19:52:15,259 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_experience_conflicts_or_tension_at_home.: 5
+2025-11-25 19:52:15,259 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_the_current_mode_of_learning_affects_my_academic_motivation_and_performance.: 5
+2025-11-25 19:52:15,259 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_find_it_difficult_to_fall_asleep_because_of_academic_stress.: 5
+2025-11-25 19:52:15,259 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_emotionally_drained_at_the_end_of_the_school_day.: 5
+2025-11-25 19:52:15,259 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_emotionally_unsupported_by_my_family.: 5
+2025-11-25 19:52:15,259 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_family_does_not_understand_or_acknowledge_my_academic_struggles.: 5
+2025-11-25 19:52:15,260 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_burned_out_even_when_i_try_to_rest.: 5
+2025-11-25 19:52:15,260 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_competent_in_the_subjects_i�m_studying.: 1
+2025-11-25 19:52:15,260 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_disconnected_from_my_academic_community.: 1
+2025-11-25 19:52:15,260 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_helpless_when_i_think_about_my_academic_performance.: 5
+2025-11-25 19:52:15,260 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_feel_in_control_of_how_i_manage_my_time.: 5
+2025-11-25 19:52:15,260 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_isolated_or_alone_in_my_academic_journey.: 1
+2025-11-25 19:52:15,260 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_sometimes_feel_like_giving_up_on_my_academic_goals.: 5
+2025-11-25 19:52:15,260 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_feel_more_isolated_in_online_or_hybrid_learning_environments.: 5
+2025-11-25 19:52:15,261 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_am_currently_experiencing_financial_difficulties_that_affect_my_studies.: 5
+2025-11-25 19:52:15,261 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_usually_finish_tasks_right_before_the_deadline.: 5
+2025-11-25 19:52:15,261 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_experience_frequent_headaches_or_fatigue_during_the_semester.: 5
+2025-11-25 19:52:15,261 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_find_it_hard_to_feel_excited_about_academic_tasks.: 5
+2025-11-25 19:52:15,261 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_find_it_hard_to_maintain_a_consistent_daily_routine.: 5
+2025-11-25 19:52:15,261 [INFO] backend.routers.predict:    social_support_and_isolation_i_hesitate_to_ask_for_help_from_peers_or_instructors.: 5
+2025-11-25 19:52:15,261 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_get_irritated_or_frustrated_easily_because_of_school_pressure.: 5
+2025-11-25 19:52:15,261 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_my_learning_setup_online_hybrid_or_in_person_contributes_to_my_academic_stress.: 5
+2025-11-25 19:52:15,261 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_long_commutes_to_school_contribute_to_my_stress_and_burnout.: 5
+2025-11-25 19:52:15,261 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_lose_motivation_after_a_long_commute: 5
+2025-11-25 19:52:15,261 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_sometimes_miss_schoolwork_due_to_family_responsibilities.: 5
+2025-11-25 19:52:15,261 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_multitask_to_meet_academic_deadlines.: 5
+2025-11-25 19:52:15,263 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_home_environment_is_noisy_or_stressful_making_it_hard_to_study.: 5
+2025-11-25 19:52:15,263 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_like_i_am_not_accomplishing_anything_worthwhile_in_school.: 1
+2025-11-25 19:52:15,263 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_that_my_personal_or_home_life_affects_my_academic_performance.: 5
+2025-11-25 19:52:15,263 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_feel_physically_exhausted_even_after_taking_a_rest.: 5
+2025-11-25 19:52:15,263 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_prefer_my_current_learning_modality_over_other_options.: 5
+2025-11-25 19:52:15,264 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_often_feel_pressure_to_support_my_family_financially.: 5
+2025-11-25 19:52:15,264 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_proud_of_my_academic_achievements: 1
+2025-11-25 19:52:15,264 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_often_question_whether_my_efforts_in_school_are_worth_it.: 1
+2025-11-25 19:52:15,264 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_rarely_have_free_time_because_of_school_responsibilities.: 5
+2025-11-25 19:52:15,265 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_sacrifice_sleep_to_finish_schoolwork: 5
+2025-11-25 19:52:15,265 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_a_sense_of_dread_before_starting_school_related_task: 5
+2025-11-25 19:52:15,265 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_skip_meals_due_to_my_school_workload_or_stress.: 5
+2025-11-25 19:52:15,265 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_usually_get_less_than_6_hours_of_sleep_on_school_nights.: 5
+2025-11-25 19:52:15,266 [INFO] backend.routers.predict:    social_support_and_isolation_i_have_someone_to_talk_to_when_i_feel_burned_out.: 1
+2025-11-25 19:52:15,266 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_often_struggle_to_balance_school_and_personal_responsibilities.: 5
+2025-11-25 19:52:15,266 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_struggle_to_organize_my_academic_tasks.: 5
+2025-11-25 19:52:15,266 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_usually_study_under_pressure_or_in_last_minute_situations.: 5
+2025-11-25 19:52:15,266 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_supported_by_my_family_when_i_feel_stressed_about_school.: 1
+2025-11-25 19:52:15,266 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_traveling_to_school_affects_my_energy_and_academic_performance._: 5
+2025-11-25 19:52:15,266 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_i_am_underperforming_compared_to_my_peers: 1
+2025-11-25 19:52:15,266 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_use_a_planner_or_schedule_to_track_deadlines.: 5
+2025-11-25 19:52:15,266 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_wake_up_feeling_tired_or_unrefreshed.: 5
+2025-11-25 19:52:15,267 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_waste_time_before_starting_my_schoolwork.: 5
+2025-11-25 19:52:15,267 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_believe_my_workload_is_heavier_than_that_of_my_peers.: 5
+2025-11-25 19:52:15,589 [INFO] backend.routers.predict: 📝 Frontend request logged: kaiJWQV8fvu8XKU0q3is
+2025-11-25 19:52:15,591 [INFO] backend.routers.predict: 🚀 Running prediction with mapped features...
+2025-11-25 19:52:15,591 [INFO] backend.services.prediction_service: Loading model and preprocessor...
+2025-11-25 19:52:15,591 [INFO] backend.services.prediction_service: Fetching active model from Firebase...
+2025-11-25 19:52:16,369 [WARNING] backend.services.prediction_service: Could not load model from Firebase: 400 The query requires an index. You can create it here: https://console.firebase.google.com/v1/r/project/burnout-system/firestore/indexes?create_composite=Ck1wcm9qZWN0cy9idXJub3V0LXN5c3RlbS9kYXRhYmFzZXMvKGRlZmF1bHQpL2NvbGxlY3Rpb25Hcm91cHMvbW9kZWxzL2luZGV4ZXMvXxABGgoKBmFjdGl2ZRABGg4KCnRyYWluZWRfYXQQAhoMCghfX25hbWVfXxAC. Falling back to local files.
+2025-11-25 19:52:16,371 [INFO] backend.services.prediction_service: Loading model from local files...
+2025-11-25 19:52:16,406 [INFO] backend.services.prediction_service: Model loaded successfully from local: RandomForestClassifier
+2025-11-25 19:52:16,406 [INFO] backend.services.prediction_service: Model loaded: RandomForestClassifier
+2025-11-25 19:52:16,407 [INFO] backend.services.prediction_service: Normalizing 52 input features...
+2025-11-25 19:52:16,407 [INFO] backend.services.prediction_service: Normalized to 52 features
+2025-11-25 19:52:16,407 [INFO] backend.services.prediction_service: Running prediction...
+2025-11-25 19:52:16,500 [INFO] backend.services.prediction_service: Prediction: High (95.4% confidence)
+2025-11-25 19:52:16,501 [INFO] backend.services.prediction_service: Generating detailed analysis report...
+2025-11-25 19:52:17,116 [INFO] backend.services.prediction_service: Prediction logged: AZIF53AHMvyGjZz9ZU7h
+2025-11-25 19:52:17,116 [INFO] backend.services.prediction_service: Prediction completed in 0.970s
+2025-11-25 19:52:17,117 [INFO] backend.routers.predict: ✅ Prediction successful: High (confidence: 95.4%)
+2025-11-25 19:52:17,117 [INFO] backend.routers.predict: ================================================================================
+2025-11-25 19:52:17,117 [INFO] backend.routers.predict: ✅ PREDICTION COMPLETE
+2025-11-25 19:52:17,118 [INFO] backend.routers.predict: ================================================================================
