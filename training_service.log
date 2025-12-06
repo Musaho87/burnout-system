@@ -3143,3 +3143,1226 @@ ValueError: Storage bucket name not specified. Specify the bucket name via the "
 2025-11-26 04:39:58,733 [INFO] backend.routers.predict: ================================================================================
 2025-11-26 04:39:58,733 [INFO] backend.routers.predict: ✅ PREDICTION COMPLETE
 2025-11-26 04:39:58,733 [INFO] backend.routers.predict: ================================================================================
+2025-12-06 23:01:06,170 [INFO] backend.routers.admin: 🚀 Training request received - Description: Model trained via admin panel
+2025-12-06 23:01:06,171 [INFO] backend.routers.admin: 📥 CSV Source: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1765033259807.csv?alt=media&token=4f92156b-1c83-449a-82b5-ad3749efc760
+2025-12-06 23:01:06,172 [INFO] backend.services.training_service: [PROCESS] Deactivating previous models...
+2025-12-06 23:01:09,029 [INFO] backend.services.training_service: Deactivated 1 previous model(s)
+2025-12-06 23:01:09,029 [INFO] backend.services.training_service: [START] STARTING COMPREHENSIVE BURNOUT PREDICTION TRAINING PIPELINE
+2025-12-06 23:01:09,030 [INFO] backend.services.training_service: [INPUT] Loading data from: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1765033259807.csv?alt=media&token=4f92156b-1c83-449a-82b5-ad3749efc760 (type: url)
+2025-12-06 23:01:11,246 [INFO] backend.services.training_service: [SUCCESS] Successfully loaded CSV: 524 rows × 61 columns
+2025-12-06 23:01:11,247 [INFO] backend.services.training_service: [ANALYSIS] Performing comprehensive dataset analysis...
+2025-12-06 23:01:11,463 [INFO] backend.services.training_service: [DATA] Dataset health score: 78.5 - Good
+2025-12-06 23:01:11,464 [INFO] backend.services.training_service: Starting data cleaning and preparation...
+2025-12-06 23:01:11,465 [INFO] backend.services.training_service: [LIST] Removing metadata columns: ['timestamp', 'name_optional', 'gender', 'year_level', 'institution_school_name', 'latest_general_weighted_average_gwa_or_convert_your_last_gwa_from_highschool_grades_to_current_college_grade_form', 'how_far_is_your_home_from_school_one_way?', 'what_type_of_learning_modality_do_you_currently_attend?']
+2025-12-06 23:01:11,481 [INFO] backend.services.training_service: [SUCCESS] Data cleaned: 521 rows, 53 columns
+2025-12-06 23:01:11,481 [INFO] backend.services.training_service: Mapping Likert scale responses to numerical values...
+2025-12-06 23:01:11,522 [INFO] backend.services.training_service: [SUCCESS] Likert mapping applied to 53 columns
+2025-12-06 23:01:11,523 [INFO] backend.services.training_service: Deriving burnout labels using multi-dimensional analysis...
+2025-12-06 23:01:11,524 [INFO] backend.services.training_service: [DATA] Using 53 survey response columns
+2025-12-06 23:01:11,532 [INFO] backend.services.training_service: [SUCCESS] Burnout distribution: {'Moderate': 263, 'Low': 131, 'High': 127}
+2025-12-06 23:01:11,533 [INFO] backend.services.training_service: [CHART] Thresholds: Low ≤ 3.11, High > 3.85
+2025-12-06 23:01:11,555 [INFO] backend.services.training_service: 
+[AI] Training models with comprehensive evaluation...
+2025-12-06 23:01:11,556 [INFO] backend.services.training_service: 
+  [TRAINING] Training Random Forest...
+2025-12-06 23:01:11,556 [INFO] backend.services.training_service:      Simple Explanation: Uses many decision trees voting together - more accurate and stable
+2025-12-06 23:01:19,157 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 92.38%
+2025-12-06 23:01:19,157 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 88.68% ± 0.72%
+2025-12-06 23:01:19,158 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-12-06 23:01:19,159 [INFO] backend.services.training_service: 
+  [TRAINING] Training Decision Tree...
+2025-12-06 23:01:19,160 [INFO] backend.services.training_service:      Simple Explanation: Makes decisions like a flowchart - easy to understand
+2025-12-06 23:01:23,822 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 76.19%
+2025-12-06 23:01:23,822 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 71.01% ± 2.09%
+2025-12-06 23:01:23,823 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Good
+2025-12-06 23:01:23,823 [INFO] backend.services.training_service: 
+  [TRAINING] Training SVM...
+2025-12-06 23:01:23,824 [INFO] backend.services.training_service:      Simple Explanation: Draws boundaries to separate burnout levels - good for complex patterns
+2025-12-06 23:01:27,023 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 89.52%
+2025-12-06 23:01:27,023 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 91.95% ± 2.44%
+2025-12-06 23:01:27,024 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-12-06 23:01:40,793 [INFO] backend.services.training_service: [SAVE] Analytics report saved successfully: analytics\training_analytics_v2.json
+2025-12-06 23:01:40,793 [INFO] backend.services.training_service: [CLOUD] Uploading artifacts to Firebase...
+2025-12-06 23:01:44,927 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: analytics/training_analytics_v2.json
+2025-12-06 23:01:48,093 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: models/v2/burnout_v2.pkl
+2025-12-06 23:01:52,053 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: models/v2/burnout_latest.pkl
+2025-12-06 23:01:53,626 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: models/v2/preprocessor_latest.pkl
+2025-12-06 23:01:56,241 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v2/comprehensive_confusion_matrix.png
+2025-12-06 23:01:58,498 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v2/roc_curves.png
+2025-12-06 23:02:00,649 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v2/learning_curve.png
+2025-12-06 23:02:04,027 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v2/adaptive_model_explanation.png
+2025-12-06 23:02:06,899 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v2/prediction_confidence.png
+2025-12-06 23:02:09,059 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v2/model_analysis_dashboard.png
+2025-12-06 23:02:12,030 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v2/data_quality_analysis.png
+2025-12-06 23:02:12,032 [INFO] backend.services.training_service: [CLOUD] All artifacts uploaded for version 2
+2025-12-06 23:02:12,038 [WARNING] backend.services.training_service: [WARNING] Error converting type <class 'list'> to native: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-12-06 23:02:12,039 [WARNING] backend.services.training_service: [WARNING] Error converting type <class 'list'> to native: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-12-06 23:02:12,039 [WARNING] backend.services.training_service: [WARNING] Error converting type <class 'list'> to native: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-12-06 23:02:12,332 [INFO] backend.services.training_service: [FIRE] Model saved to Firestore: yl6rBIGX9NGbyTH6WZ2q
+2025-12-06 23:02:12,332 [INFO] backend.services.training_service: [FIRE] Model metadata saved to Firestore with ID: yl6rBIGX9NGbyTH6WZ2q
+2025-12-06 23:02:12,332 [INFO] backend.services.training_service: 
+================================================================================
+2025-12-06 23:02:12,332 [INFO] backend.services.training_service: [SUCCESS] COMPREHENSIVE TRAINING COMPLETE
+2025-12-06 23:02:12,332 [INFO] backend.services.training_service: ================================================================================
+2025-12-06 23:02:12,332 [INFO] backend.services.training_service: [PACKAGE] Model Version: 2
+2025-12-06 23:02:12,333 [INFO] backend.services.training_service: [BEST] Best Model: Random Forest
+2025-12-06 23:02:12,333 [INFO] backend.services.training_service: [TARGET] Test Accuracy: 92.38%
+2025-12-06 23:02:12,333 [INFO] backend.services.training_service: [CHART] Performance Tier: Excellent
+2025-12-06 23:02:12,333 [INFO] backend.services.training_service: [ANALYSIS] Top Predictor: emotional_state_and_burnout_indicators_i_feel_emotionally_drained_at_the_end_of_the_school_day.
+2025-12-06 23:02:12,333 [INFO] backend.services.training_service: [DATA] Dataset Quality: Excellent
+2025-12-06 23:02:12,333 [INFO] backend.services.training_service: [INSIGHT] Deployment Recommendation: Ready for production deployment
+2025-12-06 23:02:12,333 [INFO] backend.services.training_service: [ADAPTIVE] This AI model learns and improves from new student data automatically
+2025-12-06 23:02:12,334 [INFO] backend.services.training_service: ================================================================================
+2025-12-06 23:13:31,155 [INFO] backend.routers.admin: 🚀 Training request received - Description: Model trained via admin panel
+2025-12-06 23:13:31,156 [INFO] backend.routers.admin: 📥 CSV Source: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1765034005462.csv?alt=media&token=f4dfd242-91c3-4469-816b-d7204798e931
+2025-12-06 23:13:31,156 [INFO] backend.services.training_service: [PROCESS] Deactivating previous models...
+2025-12-06 23:13:33,630 [INFO] backend.services.training_service: Deactivated 1 previous model(s)
+2025-12-06 23:13:33,630 [INFO] backend.services.training_service: [START] STARTING COMPREHENSIVE BURNOUT PREDICTION TRAINING PIPELINE
+2025-12-06 23:13:33,630 [INFO] backend.services.training_service: [INPUT] Loading data from: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1765034005462.csv?alt=media&token=f4dfd242-91c3-4469-816b-d7204798e931 (type: url)
+2025-12-06 23:13:36,265 [INFO] backend.services.training_service: [SUCCESS] Successfully loaded CSV: 524 rows × 61 columns
+2025-12-06 23:13:36,269 [INFO] backend.services.training_service: [ANALYSIS] Performing comprehensive dataset analysis...
+2025-12-06 23:13:36,787 [INFO] backend.services.training_service: [DATA] Dataset health score: 78.5 - Good
+2025-12-06 23:13:36,789 [INFO] backend.services.training_service: Starting data cleaning and preparation...
+2025-12-06 23:13:36,790 [INFO] backend.services.training_service: [LIST] Removing metadata columns: ['timestamp', 'name_optional', 'gender', 'year_level', 'institution_school_name', 'latest_general_weighted_average_gwa_or_convert_your_last_gwa_from_highschool_grades_to_current_college_grade_form', 'how_far_is_your_home_from_school_one_way?', 'what_type_of_learning_modality_do_you_currently_attend?']
+2025-12-06 23:13:36,826 [INFO] backend.services.training_service: [SUCCESS] Data cleaned: 521 rows, 53 columns
+2025-12-06 23:13:36,826 [INFO] backend.services.training_service: Mapping Likert scale responses to numerical values...
+2025-12-06 23:13:36,912 [INFO] backend.services.training_service: [SUCCESS] Likert mapping applied to 53 columns
+2025-12-06 23:13:36,912 [INFO] backend.services.training_service: Deriving burnout labels using multi-dimensional analysis...
+2025-12-06 23:13:36,915 [INFO] backend.services.training_service: [DATA] Using 53 survey response columns
+2025-12-06 23:13:36,930 [INFO] backend.services.training_service: [SUCCESS] Burnout distribution: {'Moderate': 263, 'Low': 131, 'High': 127}
+2025-12-06 23:13:36,930 [INFO] backend.services.training_service: [CHART] Thresholds: Low ≤ 3.11, High > 3.85
+2025-12-06 23:13:36,970 [INFO] backend.services.training_service: 
+[AI] Training models with comprehensive evaluation...
+2025-12-06 23:13:36,971 [INFO] backend.services.training_service: 
+  [TRAINING] Training Random Forest...
+2025-12-06 23:13:36,971 [INFO] backend.services.training_service:      Simple Explanation: Uses many decision trees voting together - more accurate and stable
+2025-12-06 23:13:37,577 [INFO] backend.services.training_service: [DEBUG] y_proba shape: (105, 3), dtype: float64
+2025-12-06 23:13:37,578 [INFO] backend.services.training_service: [DEBUG] y_true type: <class 'list'>, len: 105
+2025-12-06 23:13:37,579 [INFO] backend.services.training_service: [DEBUG] Class names: ['High', 'Low', 'Moderate']
+2025-12-06 23:13:37,581 [INFO] backend.services.training_service: [DEBUG] y_proba sample (first 3): [[0.05995526 0.35790142 0.58214332]
+ [0.20369325 0.06235498 0.73395177]
+ [0.79517109 0.00333333 0.20149558]]
+2025-12-06 23:13:37,582 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Starting ROC AUC calculation...
+2025-12-06 23:13:37,582 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] y_true type: <class 'list'>, length: 105
+2025-12-06 23:13:37,582 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] y_proba shape: (105, 3)
+2025-12-06 23:13:37,582 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Class names: ['High', 'Low', 'Moderate']
+2025-12-06 23:13:37,583 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Multi-class classification detected
+2025-12-06 23:13:37,592 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] OVO AUC: 0.9886308659893567
+2025-12-06 23:13:37,597 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] OVR AUC: 0.9874734373181949
+2025-12-06 23:13:37,598 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Average AUC: 0.9880521516537758
+2025-12-06 23:13:37,598 [INFO] backend.services.training_service: [SUCCESS] ROC AUC calculated successfully: 0.9880521516537758
+2025-12-06 23:13:44,914 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 92.38%
+2025-12-06 23:13:44,916 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 88.68% ± 0.72%
+2025-12-06 23:13:44,917 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-12-06 23:13:44,918 [INFO] backend.services.training_service: 
+  [TRAINING] Training Decision Tree...
+2025-12-06 23:13:44,919 [INFO] backend.services.training_service:      Simple Explanation: Makes decisions like a flowchart - easy to understand
+2025-12-06 23:13:45,006 [INFO] backend.services.training_service: [DEBUG] y_proba shape: (105, 3), dtype: float64
+2025-12-06 23:13:45,006 [INFO] backend.services.training_service: [DEBUG] y_true type: <class 'list'>, len: 105
+2025-12-06 23:13:45,006 [INFO] backend.services.training_service: [DEBUG] Class names: ['High', 'Low', 'Moderate']
+2025-12-06 23:13:45,007 [INFO] backend.services.training_service: [DEBUG] y_proba sample (first 3): [[0. 0. 1.]
+ [0. 0. 1.]
+ [0. 0. 1.]]
+2025-12-06 23:13:45,007 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Starting ROC AUC calculation...
+2025-12-06 23:13:45,008 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] y_true type: <class 'list'>, length: 105
+2025-12-06 23:13:45,008 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] y_proba shape: (105, 3)
+2025-12-06 23:13:45,008 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Class names: ['High', 'Low', 'Moderate']
+2025-12-06 23:13:45,010 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Multi-class classification detected
+2025-12-06 23:13:45,020 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] OVO AUC: 0.9026831900561945
+2025-12-06 23:13:45,025 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] OVR AUC: 0.8970248265387983
+2025-12-06 23:13:45,026 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Average AUC: 0.8998540082974964
+2025-12-06 23:13:45,026 [INFO] backend.services.training_service: [SUCCESS] ROC AUC calculated successfully: 0.8998540082974964
+2025-12-06 23:13:49,566 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 76.19%
+2025-12-06 23:13:49,567 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 71.01% ± 2.09%
+2025-12-06 23:13:49,567 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Good
+2025-12-06 23:13:49,568 [INFO] backend.services.training_service: 
+  [TRAINING] Training SVM...
+2025-12-06 23:13:49,568 [INFO] backend.services.training_service:      Simple Explanation: Draws boundaries to separate burnout levels - good for complex patterns
+2025-12-06 23:13:49,825 [INFO] backend.services.training_service: [DEBUG] y_proba shape: (105, 3), dtype: float64
+2025-12-06 23:13:49,826 [INFO] backend.services.training_service: [DEBUG] y_true type: <class 'list'>, len: 105
+2025-12-06 23:13:49,826 [INFO] backend.services.training_service: [DEBUG] Class names: ['High', 'Low', 'Moderate']
+2025-12-06 23:13:49,827 [INFO] backend.services.training_service: [DEBUG] y_proba sample (first 3): [[4.19098838e-03 5.87535544e-01 4.08273467e-01]
+ [1.37533336e-02 6.73895381e-04 9.85572771e-01]
+ [9.99002902e-01 9.75932438e-04 2.11653165e-05]]
+2025-12-06 23:13:49,827 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Starting ROC AUC calculation...
+2025-12-06 23:13:49,828 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] y_true type: <class 'list'>, length: 105
+2025-12-06 23:13:49,828 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] y_proba shape: (105, 3)
+2025-12-06 23:13:49,829 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Class names: ['High', 'Low', 'Moderate']
+2025-12-06 23:13:49,829 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Multi-class classification detected
+2025-12-06 23:13:49,837 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] OVO AUC: 0.9974600870827285
+2025-12-06 23:13:49,844 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] OVR AUC: 0.997212066653194
+2025-12-06 23:13:49,844 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Average AUC: 0.9973360768679612
+2025-12-06 23:13:49,844 [INFO] backend.services.training_service: [SUCCESS] ROC AUC calculated successfully: 0.9973360768679612
+2025-12-06 23:13:53,023 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 89.52%
+2025-12-06 23:13:53,024 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 91.95% ± 2.44%
+2025-12-06 23:13:53,024 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-12-06 23:14:04,396 [INFO] backend.services.training_service: [SAVE] Analytics report saved successfully: analytics\training_analytics_v3.json
+2025-12-06 23:14:04,396 [INFO] backend.services.training_service: [CLOUD] Uploading artifacts to Firebase...
+2025-12-06 23:14:08,051 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: analytics/training_analytics_v3.json
+2025-12-06 23:14:11,175 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: models/v3/burnout_v3.pkl
+2025-12-06 23:14:14,319 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: models/v3/burnout_latest.pkl
+2025-12-06 23:14:15,837 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: models/v3/preprocessor_latest.pkl
+2025-12-06 23:14:18,536 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v3/comprehensive_confusion_matrix.png
+2025-12-06 23:14:20,517 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v3/roc_curves.png
+2025-12-06 23:14:22,541 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v3/learning_curve.png
+2025-12-06 23:14:24,845 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v3/adaptive_model_explanation.png
+2025-12-06 23:14:26,860 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v3/prediction_confidence.png
+2025-12-06 23:14:28,972 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v3/model_analysis_dashboard.png
+2025-12-06 23:14:31,270 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v3/data_quality_analysis.png
+2025-12-06 23:14:31,271 [INFO] backend.services.training_service: [CLOUD] All artifacts uploaded for version 3
+2025-12-06 23:14:31,274 [WARNING] backend.services.training_service: [WARNING] Error converting type <class 'list'> to native: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-12-06 23:14:31,275 [WARNING] backend.services.training_service: [WARNING] Error converting type <class 'list'> to native: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-12-06 23:14:31,275 [WARNING] backend.services.training_service: [WARNING] Error converting type <class 'list'> to native: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-12-06 23:14:31,569 [INFO] backend.services.training_service: [FIRE] Model saved to Firestore: g3zIz9lX2hhbPvcBumgL
+2025-12-06 23:14:31,569 [INFO] backend.services.training_service: [FIRE] Model metadata saved to Firestore with ID: g3zIz9lX2hhbPvcBumgL
+2025-12-06 23:14:31,569 [INFO] backend.services.training_service: 
+================================================================================
+2025-12-06 23:14:31,571 [INFO] backend.services.training_service: [SUCCESS] COMPREHENSIVE TRAINING COMPLETE
+2025-12-06 23:14:31,571 [INFO] backend.services.training_service: ================================================================================
+2025-12-06 23:14:31,571 [INFO] backend.services.training_service: [PACKAGE] Model Version: 3
+2025-12-06 23:14:31,572 [INFO] backend.services.training_service: [BEST] Best Model: Random Forest
+2025-12-06 23:14:31,572 [INFO] backend.services.training_service: [TARGET] Test Accuracy: 92.38%
+2025-12-06 23:14:31,572 [INFO] backend.services.training_service: [CHART] Performance Tier: Excellent
+2025-12-06 23:14:31,572 [INFO] backend.services.training_service: [ANALYSIS] Top Predictor: emotional_state_and_burnout_indicators_i_feel_emotionally_drained_at_the_end_of_the_school_day.
+2025-12-06 23:14:31,572 [INFO] backend.services.training_service: [DATA] Dataset Quality: Excellent
+2025-12-06 23:14:31,572 [INFO] backend.services.training_service: [INSIGHT] Deployment Recommendation: Ready for production deployment
+2025-12-06 23:14:31,573 [INFO] backend.services.training_service: [ADAPTIVE] This AI model learns and improves from new student data automatically
+2025-12-06 23:14:31,573 [INFO] backend.services.training_service: ================================================================================
+2025-12-06 23:21:56,774 [INFO] backend.routers.admin: 🚀 Training request received - Description: Model trained via admin panel
+2025-12-06 23:21:56,774 [INFO] backend.routers.admin: 📥 CSV Source: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1765034512512.csv?alt=media&token=74ee2233-9490-4966-9f34-09f7b6bf405b
+2025-12-06 23:21:56,774 [INFO] backend.services.training_service: [PROCESS] Deactivating previous models...
+2025-12-06 23:21:58,957 [INFO] backend.services.training_service: Deactivated 1 previous model(s)
+2025-12-06 23:21:58,957 [INFO] backend.services.training_service: [START] STARTING COMPREHENSIVE BURNOUT PREDICTION TRAINING PIPELINE
+2025-12-06 23:21:58,959 [INFO] backend.services.training_service: [INPUT] Loading data from: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1765034512512.csv?alt=media&token=74ee2233-9490-4966-9f34-09f7b6bf405b (type: url)
+2025-12-06 23:22:02,898 [INFO] backend.services.training_service: [SUCCESS] Successfully loaded CSV: 524 rows × 61 columns
+2025-12-06 23:22:02,901 [INFO] backend.services.training_service: [ANALYSIS] Performing comprehensive dataset analysis...
+2025-12-06 23:22:03,149 [INFO] backend.services.training_service: [DATA] Dataset health score: 78.5 - Good
+2025-12-06 23:22:03,149 [INFO] backend.services.training_service: Starting data cleaning and preparation...
+2025-12-06 23:22:03,150 [INFO] backend.services.training_service: [LIST] Removing metadata columns: ['timestamp', 'name_optional', 'gender', 'year_level', 'institution_school_name', 'latest_general_weighted_average_gwa_or_convert_your_last_gwa_from_highschool_grades_to_current_college_grade_form', 'how_far_is_your_home_from_school_one_way?', 'what_type_of_learning_modality_do_you_currently_attend?']
+2025-12-06 23:22:03,169 [INFO] backend.services.training_service: [SUCCESS] Data cleaned: 521 rows, 53 columns
+2025-12-06 23:22:03,170 [INFO] backend.services.training_service: Mapping Likert scale responses to numerical values...
+2025-12-06 23:22:03,215 [INFO] backend.services.training_service: [SUCCESS] Likert mapping applied to 53 columns
+2025-12-06 23:22:03,215 [INFO] backend.services.training_service: Deriving burnout labels using multi-dimensional analysis...
+2025-12-06 23:22:03,216 [INFO] backend.services.training_service: [DATA] Using 53 survey response columns
+2025-12-06 23:22:03,222 [INFO] backend.services.training_service: [SUCCESS] Burnout distribution: {'Moderate': 263, 'Low': 131, 'High': 127}
+2025-12-06 23:22:03,222 [INFO] backend.services.training_service: [CHART] Thresholds: Low ≤ 3.11, High > 3.85
+2025-12-06 23:22:03,243 [INFO] backend.services.training_service: 
+[AI] Training models with comprehensive evaluation...
+2025-12-06 23:22:03,243 [INFO] backend.services.training_service: 
+  [TRAINING] Training Random Forest...
+2025-12-06 23:22:03,243 [INFO] backend.services.training_service:      Simple Explanation: Uses many decision trees voting together - more accurate and stable
+2025-12-06 23:22:03,763 [INFO] backend.services.training_service: [DEBUG] y_proba shape: (105, 3), dtype: float64
+2025-12-06 23:22:03,764 [INFO] backend.services.training_service: [DEBUG] y_true type: <class 'list'>, len: 105
+2025-12-06 23:22:03,764 [INFO] backend.services.training_service: [DEBUG] Class names: ['High', 'Low', 'Moderate']
+2025-12-06 23:22:03,764 [INFO] backend.services.training_service: [DEBUG] y_proba sample (first 3): [[0.05995526 0.35790142 0.58214332]
+ [0.20369325 0.06235498 0.73395177]
+ [0.79517109 0.00333333 0.20149558]]
+2025-12-06 23:22:03,765 [ERROR] backend.services.training_service: [ERROR] ROC AUC calculation failed: name 'calculate_roc_auc_fixed' is not defined
+Traceback (most recent call last):
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\services\training_service.py", line 2181, in _calculate_advanced_metrics
+    roc_auc_results = calculate_roc_auc_fixed(y_true, y_proba, class_names)
+                      ^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'calculate_roc_auc_fixed' is not defined
+2025-12-06 23:22:06,920 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 92.38%
+2025-12-06 23:22:06,920 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 88.68% ± 0.72%
+2025-12-06 23:22:06,920 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-12-06 23:22:06,920 [INFO] backend.services.training_service: 
+  [TRAINING] Training Decision Tree...
+2025-12-06 23:22:06,921 [INFO] backend.services.training_service:      Simple Explanation: Makes decisions like a flowchart - easy to understand
+2025-12-06 23:22:06,952 [INFO] backend.services.training_service: [DEBUG] y_proba shape: (105, 3), dtype: float64
+2025-12-06 23:22:06,953 [INFO] backend.services.training_service: [DEBUG] y_true type: <class 'list'>, len: 105
+2025-12-06 23:22:06,953 [INFO] backend.services.training_service: [DEBUG] Class names: ['High', 'Low', 'Moderate']
+2025-12-06 23:22:06,953 [INFO] backend.services.training_service: [DEBUG] y_proba sample (first 3): [[0. 0. 1.]
+ [0. 0. 1.]
+ [0. 0. 1.]]
+2025-12-06 23:22:06,954 [ERROR] backend.services.training_service: [ERROR] ROC AUC calculation failed: name 'calculate_roc_auc_fixed' is not defined
+Traceback (most recent call last):
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\services\training_service.py", line 2181, in _calculate_advanced_metrics
+    roc_auc_results = calculate_roc_auc_fixed(y_true, y_proba, class_names)
+                      ^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'calculate_roc_auc_fixed' is not defined
+2025-12-06 23:22:10,498 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 76.19%
+2025-12-06 23:22:10,498 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 71.01% ± 2.09%
+2025-12-06 23:22:10,498 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Good
+2025-12-06 23:22:10,499 [INFO] backend.services.training_service: 
+  [TRAINING] Training SVM...
+2025-12-06 23:22:10,499 [INFO] backend.services.training_service:      Simple Explanation: Draws boundaries to separate burnout levels - good for complex patterns
+2025-12-06 23:22:10,654 [INFO] backend.services.training_service: [DEBUG] y_proba shape: (105, 3), dtype: float64
+2025-12-06 23:22:10,655 [INFO] backend.services.training_service: [DEBUG] y_true type: <class 'list'>, len: 105
+2025-12-06 23:22:10,655 [INFO] backend.services.training_service: [DEBUG] Class names: ['High', 'Low', 'Moderate']
+2025-12-06 23:22:10,657 [INFO] backend.services.training_service: [DEBUG] y_proba sample (first 3): [[4.19098838e-03 5.87535544e-01 4.08273467e-01]
+ [1.37533336e-02 6.73895381e-04 9.85572771e-01]
+ [9.99002902e-01 9.75932438e-04 2.11653165e-05]]
+2025-12-06 23:22:10,657 [ERROR] backend.services.training_service: [ERROR] ROC AUC calculation failed: name 'calculate_roc_auc_fixed' is not defined
+Traceback (most recent call last):
+  File "C:\Users\Jannray\Documents\python\burnout-system\backend\services\training_service.py", line 2181, in _calculate_advanced_metrics
+    roc_auc_results = calculate_roc_auc_fixed(y_true, y_proba, class_names)
+                      ^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'calculate_roc_auc_fixed' is not defined
+2025-12-06 23:22:13,387 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 89.52%
+2025-12-06 23:22:13,388 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 91.95% ± 2.44%
+2025-12-06 23:22:13,388 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-12-06 23:22:29,720 [INFO] backend.services.training_service: [SAVE] Analytics report saved successfully: analytics\training_analytics_v4.json
+2025-12-06 23:22:29,721 [INFO] backend.services.training_service: [CLOUD] Uploading artifacts to Firebase...
+2025-12-06 23:22:33,626 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: analytics/training_analytics_v4.json
+2025-12-06 23:22:36,772 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: models/v4/burnout_v4.pkl
+2025-12-06 23:22:39,935 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: models/v4/burnout_latest.pkl
+2025-12-06 23:22:41,472 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: models/v4/preprocessor_latest.pkl
+2025-12-06 23:22:44,144 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v4/comprehensive_confusion_matrix.png
+2025-12-06 23:22:46,139 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v4/roc_curves.png
+2025-12-06 23:22:48,143 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v4/learning_curve.png
+2025-12-06 23:22:50,567 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v4/adaptive_model_explanation.png
+2025-12-06 23:22:52,585 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v4/prediction_confidence.png
+2025-12-06 23:22:54,839 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v4/model_analysis_dashboard.png
+2025-12-06 23:22:57,162 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v4/data_quality_analysis.png
+2025-12-06 23:22:57,164 [INFO] backend.services.training_service: [CLOUD] All artifacts uploaded for version 4
+2025-12-06 23:22:57,165 [WARNING] backend.services.training_service: [WARNING] Error converting type <class 'list'> to native: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-12-06 23:22:57,165 [WARNING] backend.services.training_service: [WARNING] Error converting type <class 'list'> to native: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-12-06 23:22:57,166 [WARNING] backend.services.training_service: [WARNING] Error converting type <class 'list'> to native: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-12-06 23:22:58,320 [INFO] backend.services.training_service: [FIRE] Model saved to Firestore: dFnjtLXgI0is4yM72f2c
+2025-12-06 23:22:58,320 [INFO] backend.services.training_service: [FIRE] Model metadata saved to Firestore with ID: dFnjtLXgI0is4yM72f2c
+2025-12-06 23:22:58,321 [INFO] backend.services.training_service: 
+================================================================================
+2025-12-06 23:22:58,321 [INFO] backend.services.training_service: [SUCCESS] COMPREHENSIVE TRAINING COMPLETE
+2025-12-06 23:22:58,321 [INFO] backend.services.training_service: ================================================================================
+2025-12-06 23:22:58,321 [INFO] backend.services.training_service: [PACKAGE] Model Version: 4
+2025-12-06 23:22:58,322 [INFO] backend.services.training_service: [BEST] Best Model: Random Forest
+2025-12-06 23:22:58,322 [INFO] backend.services.training_service: [TARGET] Test Accuracy: 92.38%
+2025-12-06 23:22:58,322 [INFO] backend.services.training_service: [CHART] Performance Tier: Excellent
+2025-12-06 23:22:58,322 [INFO] backend.services.training_service: [ANALYSIS] Top Predictor: emotional_state_and_burnout_indicators_i_feel_emotionally_drained_at_the_end_of_the_school_day.
+2025-12-06 23:22:58,324 [INFO] backend.services.training_service: [DATA] Dataset Quality: Excellent
+2025-12-06 23:22:58,325 [INFO] backend.services.training_service: [INSIGHT] Deployment Recommendation: Ready for production deployment
+2025-12-06 23:22:58,325 [INFO] backend.services.training_service: [ADAPTIVE] This AI model learns and improves from new student data automatically
+2025-12-06 23:22:58,325 [INFO] backend.services.training_service: ================================================================================
+2025-12-06 23:25:15,939 [INFO] backend.routers.admin: 🚀 Training request received - Description: Model trained via admin panel
+2025-12-06 23:25:15,939 [INFO] backend.routers.admin: 📥 CSV Source: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1765034709267.csv?alt=media&token=46906876-d59d-4d14-bc0f-3e2c94a1a41f
+2025-12-06 23:25:15,940 [INFO] backend.services.training_service: [PROCESS] Deactivating previous models...
+2025-12-06 23:25:19,173 [INFO] backend.services.training_service: Deactivated 1 previous model(s)
+2025-12-06 23:25:19,174 [INFO] backend.services.training_service: [START] STARTING COMPREHENSIVE BURNOUT PREDICTION TRAINING PIPELINE
+2025-12-06 23:25:19,174 [INFO] backend.services.training_service: [INPUT] Loading data from: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1765034709267.csv?alt=media&token=46906876-d59d-4d14-bc0f-3e2c94a1a41f (type: url)
+2025-12-06 23:25:21,745 [INFO] backend.services.training_service: [SUCCESS] Successfully loaded CSV: 524 rows × 61 columns
+2025-12-06 23:25:21,748 [INFO] backend.services.training_service: [ANALYSIS] Performing comprehensive dataset analysis...
+2025-12-06 23:25:22,080 [INFO] backend.services.training_service: [DATA] Dataset health score: 78.5 - Good
+2025-12-06 23:25:22,080 [INFO] backend.services.training_service: Starting data cleaning and preparation...
+2025-12-06 23:25:22,081 [INFO] backend.services.training_service: [LIST] Removing metadata columns: ['timestamp', 'name_optional', 'gender', 'year_level', 'institution_school_name', 'latest_general_weighted_average_gwa_or_convert_your_last_gwa_from_highschool_grades_to_current_college_grade_form', 'how_far_is_your_home_from_school_one_way?', 'what_type_of_learning_modality_do_you_currently_attend?']
+2025-12-06 23:25:22,099 [INFO] backend.services.training_service: [SUCCESS] Data cleaned: 521 rows, 53 columns
+2025-12-06 23:25:22,099 [INFO] backend.services.training_service: Mapping Likert scale responses to numerical values...
+2025-12-06 23:25:22,147 [INFO] backend.services.training_service: [SUCCESS] Likert mapping applied to 53 columns
+2025-12-06 23:25:22,147 [INFO] backend.services.training_service: Deriving burnout labels using multi-dimensional analysis...
+2025-12-06 23:25:22,149 [INFO] backend.services.training_service: [DATA] Using 53 survey response columns
+2025-12-06 23:25:22,158 [INFO] backend.services.training_service: [SUCCESS] Burnout distribution: {'Moderate': 263, 'Low': 131, 'High': 127}
+2025-12-06 23:25:22,158 [INFO] backend.services.training_service: [CHART] Thresholds: Low ≤ 3.11, High > 3.85
+2025-12-06 23:25:22,172 [INFO] backend.services.training_service: 
+[AI] Training models with comprehensive evaluation...
+2025-12-06 23:25:22,173 [INFO] backend.services.training_service: 
+  [TRAINING] Training Random Forest...
+2025-12-06 23:25:22,173 [INFO] backend.services.training_service:      Simple Explanation: Uses many decision trees voting together - more accurate and stable
+2025-12-06 23:25:22,615 [INFO] backend.services.training_service: [DEBUG] y_proba shape: (105, 3), dtype: float64
+2025-12-06 23:25:22,616 [INFO] backend.services.training_service: [DEBUG] y_true type: <class 'list'>, len: 105
+2025-12-06 23:25:22,616 [INFO] backend.services.training_service: [DEBUG] Class names: ['High', 'Low', 'Moderate']
+2025-12-06 23:25:22,617 [INFO] backend.services.training_service: [DEBUG] y_proba sample (first 3): [[0.05995526 0.35790142 0.58214332]
+ [0.20369325 0.06235498 0.73395177]
+ [0.79517109 0.00333333 0.20149558]]
+2025-12-06 23:25:22,633 [INFO] backend.services.training_service: [SUCCESS] ROC AUC calculated successfully: 0.9880521516537758
+2025-12-06 23:25:25,732 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 92.38%
+2025-12-06 23:25:25,732 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 88.68% ± 0.72%
+2025-12-06 23:25:25,733 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-12-06 23:25:25,733 [INFO] backend.services.training_service: 
+  [TRAINING] Training Decision Tree...
+2025-12-06 23:25:25,733 [INFO] backend.services.training_service:      Simple Explanation: Makes decisions like a flowchart - easy to understand
+2025-12-06 23:25:25,786 [INFO] backend.services.training_service: [DEBUG] y_proba shape: (105, 3), dtype: float64
+2025-12-06 23:25:25,786 [INFO] backend.services.training_service: [DEBUG] y_true type: <class 'list'>, len: 105
+2025-12-06 23:25:25,786 [INFO] backend.services.training_service: [DEBUG] Class names: ['High', 'Low', 'Moderate']
+2025-12-06 23:25:25,787 [INFO] backend.services.training_service: [DEBUG] y_proba sample (first 3): [[0. 0. 1.]
+ [0. 0. 1.]
+ [0. 0. 1.]]
+2025-12-06 23:25:25,798 [INFO] backend.services.training_service: [SUCCESS] ROC AUC calculated successfully: 0.8998540082974964
+2025-12-06 23:25:29,382 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 76.19%
+2025-12-06 23:25:29,383 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 71.01% ± 2.09%
+2025-12-06 23:25:29,383 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Good
+2025-12-06 23:25:29,383 [INFO] backend.services.training_service: 
+  [TRAINING] Training SVM...
+2025-12-06 23:25:29,383 [INFO] backend.services.training_service:      Simple Explanation: Draws boundaries to separate burnout levels - good for complex patterns
+2025-12-06 23:25:29,499 [INFO] backend.services.training_service: [DEBUG] y_proba shape: (105, 3), dtype: float64
+2025-12-06 23:25:29,499 [INFO] backend.services.training_service: [DEBUG] y_true type: <class 'list'>, len: 105
+2025-12-06 23:25:29,500 [INFO] backend.services.training_service: [DEBUG] Class names: ['High', 'Low', 'Moderate']
+2025-12-06 23:25:29,500 [INFO] backend.services.training_service: [DEBUG] y_proba sample (first 3): [[4.19098838e-03 5.87535544e-01 4.08273467e-01]
+ [1.37533336e-02 6.73895381e-04 9.85572771e-01]
+ [9.99002902e-01 9.75932438e-04 2.11653165e-05]]
+2025-12-06 23:25:29,511 [INFO] backend.services.training_service: [SUCCESS] ROC AUC calculated successfully: 0.9973360768679612
+2025-12-06 23:25:32,079 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 89.52%
+2025-12-06 23:25:32,079 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 91.95% ± 2.44%
+2025-12-06 23:25:32,080 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-12-06 23:25:47,677 [INFO] backend.services.training_service: [SAVE] Analytics report saved successfully: analytics\training_analytics_v5.json
+2025-12-06 23:25:47,677 [INFO] backend.services.training_service: [CLOUD] Uploading artifacts to Firebase...
+2025-12-06 23:25:51,444 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: analytics/training_analytics_v5.json
+2025-12-06 23:25:54,599 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: models/v5/burnout_v5.pkl
+2025-12-06 23:25:57,755 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: models/v5/burnout_latest.pkl
+2025-12-06 23:25:59,894 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: models/v5/preprocessor_latest.pkl
+2025-12-06 23:26:01,995 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v5/comprehensive_confusion_matrix.png
+2025-12-06 23:26:03,997 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v5/roc_curves.png
+2025-12-06 23:26:06,027 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v5/learning_curve.png
+2025-12-06 23:26:08,363 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v5/adaptive_model_explanation.png
+2025-12-06 23:26:10,377 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v5/prediction_confidence.png
+2025-12-06 23:26:12,606 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v5/model_analysis_dashboard.png
+2025-12-06 23:26:14,918 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v5/data_quality_analysis.png
+2025-12-06 23:26:14,920 [INFO] backend.services.training_service: [CLOUD] All artifacts uploaded for version 5
+2025-12-06 23:26:14,921 [WARNING] backend.services.training_service: [WARNING] Error converting type <class 'list'> to native: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-12-06 23:26:14,921 [WARNING] backend.services.training_service: [WARNING] Error converting type <class 'list'> to native: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-12-06 23:26:14,921 [WARNING] backend.services.training_service: [WARNING] Error converting type <class 'list'> to native: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-12-06 23:26:15,240 [INFO] backend.services.training_service: [FIRE] Model saved to Firestore: YNRtcbfaDyj3HyMPWkh8
+2025-12-06 23:26:15,247 [INFO] backend.services.training_service: [FIRE] Model metadata saved to Firestore with ID: YNRtcbfaDyj3HyMPWkh8
+2025-12-06 23:26:15,247 [INFO] backend.services.training_service: 
+================================================================================
+2025-12-06 23:26:15,248 [INFO] backend.services.training_service: [SUCCESS] COMPREHENSIVE TRAINING COMPLETE
+2025-12-06 23:26:15,248 [INFO] backend.services.training_service: ================================================================================
+2025-12-06 23:26:15,248 [INFO] backend.services.training_service: [PACKAGE] Model Version: 5
+2025-12-06 23:26:15,248 [INFO] backend.services.training_service: [BEST] Best Model: Random Forest
+2025-12-06 23:26:15,248 [INFO] backend.services.training_service: [TARGET] Test Accuracy: 92.38%
+2025-12-06 23:26:15,248 [INFO] backend.services.training_service: [CHART] Performance Tier: Excellent
+2025-12-06 23:26:15,248 [INFO] backend.services.training_service: [ANALYSIS] Top Predictor: emotional_state_and_burnout_indicators_i_feel_emotionally_drained_at_the_end_of_the_school_day.
+2025-12-06 23:26:15,248 [INFO] backend.services.training_service: [DATA] Dataset Quality: Excellent
+2025-12-06 23:26:15,248 [INFO] backend.services.training_service: [INSIGHT] Deployment Recommendation: Ready for production deployment
+2025-12-06 23:26:15,248 [INFO] backend.services.training_service: [ADAPTIVE] This AI model learns and improves from new student data automatically
+2025-12-06 23:26:15,248 [INFO] backend.services.training_service: ================================================================================
+2025-12-06 23:50:34,912 [INFO] backend.routers.admin: 🚀 Training request received - Description: Model trained via admin panel
+2025-12-06 23:50:34,913 [INFO] backend.routers.admin: 📥 CSV Source: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1765036160623.csv?alt=media&token=b88b5a22-6cf8-4aae-857f-3335d664f1ea
+2025-12-06 23:50:34,913 [INFO] backend.services.training_service: [PROCESS] Deactivating previous models...
+2025-12-06 23:50:37,248 [INFO] backend.services.training_service: Deactivated 1 previous model(s)
+2025-12-06 23:50:37,249 [INFO] backend.services.training_service: [START] STARTING COMPREHENSIVE BURNOUT PREDICTION TRAINING PIPELINE
+2025-12-06 23:50:37,249 [INFO] backend.services.training_service: [INPUT] Loading data from: https://firebasestorage.googleapis.com/v0/b/burnout-system.firebasestorage.app/o/csv%2Fburnout_data_1765036160623.csv?alt=media&token=b88b5a22-6cf8-4aae-857f-3335d664f1ea (type: url)
+2025-12-06 23:50:39,528 [INFO] backend.services.training_service: [SUCCESS] Successfully loaded CSV: 524 rows × 61 columns
+2025-12-06 23:50:39,531 [INFO] backend.services.training_service: [ANALYSIS] Performing comprehensive dataset analysis...
+2025-12-06 23:50:39,801 [INFO] backend.services.training_service: [DATA] Dataset health score: 78.5 - Good
+2025-12-06 23:50:39,802 [INFO] backend.services.training_service: Starting data cleaning and preparation...
+2025-12-06 23:50:39,802 [INFO] backend.services.training_service: [LIST] Removing metadata columns: ['timestamp', 'name_optional', 'gender', 'year_level', 'institution_school_name', 'latest_general_weighted_average_gwa_or_convert_your_last_gwa_from_highschool_grades_to_current_college_grade_form', 'how_far_is_your_home_from_school_one_way?', 'what_type_of_learning_modality_do_you_currently_attend?']
+2025-12-06 23:50:39,829 [INFO] backend.services.training_service: [SUCCESS] Data cleaned: 521 rows, 53 columns
+2025-12-06 23:50:39,829 [INFO] backend.services.training_service: Mapping Likert scale responses to numerical values...
+2025-12-06 23:50:39,889 [INFO] backend.services.training_service: [SUCCESS] Likert mapping applied to 53 columns
+2025-12-06 23:50:39,889 [INFO] backend.services.training_service: Deriving burnout labels using multi-dimensional analysis...
+2025-12-06 23:50:39,891 [INFO] backend.services.training_service: [DATA] Using 53 survey response columns
+2025-12-06 23:50:39,898 [INFO] backend.services.training_service: [SUCCESS] Burnout distribution: {'Moderate': 263, 'Low': 131, 'High': 127}
+2025-12-06 23:50:39,898 [INFO] backend.services.training_service: [CHART] Thresholds: Low ≤ 3.11, High > 3.85
+2025-12-06 23:50:39,916 [INFO] backend.services.training_service: 
+[AI] Training models with comprehensive evaluation...
+2025-12-06 23:50:39,916 [INFO] backend.services.training_service: 
+  [TRAINING] Training Random Forest...
+2025-12-06 23:50:39,916 [INFO] backend.services.training_service:      Simple Explanation: Uses many decision trees voting together - more accurate and stable
+2025-12-06 23:50:40,361 [INFO] backend.services.training_service: [DEBUG] Calculating ROC AUC for 3 classes
+2025-12-06 23:50:40,361 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Starting ROC AUC calculation...
+2025-12-06 23:50:40,361 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Class names: ['High', 'Low', 'Moderate']
+2025-12-06 23:50:40,363 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Multi-class classification detected
+2025-12-06 23:50:40,372 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] OVO AUC: 0.9886308659893567, OVR AUC: 0.9874734373181949, Average: 0.9880521516537758
+2025-12-06 23:50:40,372 [INFO] backend.services.training_service: [SUCCESS] ROC AUC calculated: 0.9880521516537758
+2025-12-06 23:50:43,313 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 92.38%
+2025-12-06 23:50:43,313 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 88.68% ± 0.72%
+2025-12-06 23:50:43,314 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-12-06 23:50:43,314 [INFO] backend.services.training_service: 
+  [TRAINING] Training Decision Tree...
+2025-12-06 23:50:43,314 [INFO] backend.services.training_service:      Simple Explanation: Makes decisions like a flowchart - easy to understand
+2025-12-06 23:50:43,350 [INFO] backend.services.training_service: [DEBUG] Calculating ROC AUC for 3 classes
+2025-12-06 23:50:43,351 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Starting ROC AUC calculation...
+2025-12-06 23:50:43,351 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Class names: ['High', 'Low', 'Moderate']
+2025-12-06 23:50:43,352 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Multi-class classification detected
+2025-12-06 23:50:43,365 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] OVO AUC: 0.9026831900561945, OVR AUC: 0.8970248265387983, Average: 0.8998540082974964
+2025-12-06 23:50:43,366 [INFO] backend.services.training_service: [SUCCESS] ROC AUC calculated: 0.8998540082974964
+2025-12-06 23:50:45,740 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 76.19%
+2025-12-06 23:50:45,741 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 71.01% ± 2.09%
+2025-12-06 23:50:45,742 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Good
+2025-12-06 23:50:45,743 [INFO] backend.services.training_service: 
+  [TRAINING] Training SVM...
+2025-12-06 23:50:45,744 [INFO] backend.services.training_service:      Simple Explanation: Draws boundaries to separate burnout levels - good for complex patterns
+2025-12-06 23:50:45,861 [INFO] backend.services.training_service: [DEBUG] Calculating ROC AUC for 3 classes
+2025-12-06 23:50:45,861 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Starting ROC AUC calculation...
+2025-12-06 23:50:45,861 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Class names: ['High', 'Low', 'Moderate']
+2025-12-06 23:50:45,861 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] Multi-class classification detected
+2025-12-06 23:50:45,877 [INFO] backend.services.training_service: [ROC_AUC_DEBUG] OVO AUC: 0.9974600870827285, OVR AUC: 0.997212066653194, Average: 0.9973360768679612
+2025-12-06 23:50:45,878 [INFO] backend.services.training_service: [SUCCESS] ROC AUC calculated: 0.9973360768679612
+2025-12-06 23:50:48,437 [INFO] backend.services.training_service:      [SUCCESS] Test Accuracy: 89.52%
+2025-12-06 23:50:48,437 [INFO] backend.services.training_service:      [DATA] CV Accuracy: 91.95% ± 2.44%
+2025-12-06 23:50:48,437 [INFO] backend.services.training_service:      [INSIGHT] Performance Tier: Excellent
+2025-12-06 23:51:01,023 [INFO] backend.services.training_service: [SAVE] Analytics report saved successfully: analytics\training_analytics_v6.json
+2025-12-06 23:51:01,023 [INFO] backend.services.training_service: [CLOUD] Uploading artifacts to Firebase...
+2025-12-06 23:51:04,124 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: analytics/training_analytics_v6.json
+2025-12-06 23:51:07,510 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: models/v6/burnout_v6.pkl
+2025-12-06 23:51:11,349 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: models/v6/burnout_latest.pkl
+2025-12-06 23:51:13,069 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: models/v6/preprocessor_latest.pkl
+2025-12-06 23:51:15,879 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v6/comprehensive_confusion_matrix.png
+2025-12-06 23:51:18,704 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v6/roc_curves.png
+2025-12-06 23:51:20,716 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v6/learning_curve.png
+2025-12-06 23:51:23,327 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v6/adaptive_model_explanation.png
+2025-12-06 23:51:25,239 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v6/prediction_confidence.png
+2025-12-06 23:51:27,419 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v6/model_analysis_dashboard.png
+2025-12-06 23:51:29,743 [INFO] backend.services.training_service: [CLOUD] Uploaded to Firebase Storage: visualizations/v6/data_quality_analysis.png
+2025-12-06 23:51:29,746 [INFO] backend.services.training_service: [CLOUD] All artifacts uploaded for version 6
+2025-12-06 23:51:29,747 [WARNING] backend.services.training_service: [WARNING] Error converting type <class 'list'> to native: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-12-06 23:51:29,747 [WARNING] backend.services.training_service: [WARNING] Error converting type <class 'list'> to native: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-12-06 23:51:29,747 [WARNING] backend.services.training_service: [WARNING] Error converting type <class 'list'> to native: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-12-06 23:51:30,073 [INFO] backend.services.training_service: [FIRE] Model saved to Firestore: A5mQjEzVYmFWtQbDCask
+2025-12-06 23:51:30,074 [INFO] backend.services.training_service: [FIRE] Model metadata saved to Firestore with ID: A5mQjEzVYmFWtQbDCask
+2025-12-06 23:51:30,074 [INFO] backend.services.training_service: 
+================================================================================
+2025-12-06 23:51:30,074 [INFO] backend.services.training_service: [SUCCESS] COMPREHENSIVE TRAINING COMPLETE
+2025-12-06 23:51:30,075 [INFO] backend.services.training_service: ================================================================================
+2025-12-06 23:51:30,075 [INFO] backend.services.training_service: [PACKAGE] Model Version: 6
+2025-12-06 23:51:30,075 [INFO] backend.services.training_service: [BEST] Best Model: Random Forest
+2025-12-06 23:51:30,075 [INFO] backend.services.training_service: [TARGET] Test Accuracy: 92.38%
+2025-12-06 23:51:30,075 [INFO] backend.services.training_service: [CHART] Performance Tier: Excellent
+2025-12-06 23:51:30,075 [INFO] backend.services.training_service: [ANALYSIS] Top Predictor: emotional_state_and_burnout_indicators_i_feel_emotionally_drained_at_the_end_of_the_school_day.
+2025-12-06 23:51:30,075 [INFO] backend.services.training_service: [DATA] Dataset Quality: Excellent
+2025-12-06 23:51:30,075 [INFO] backend.services.training_service: [INSIGHT] Deployment Recommendation: Ready for production deployment
+2025-12-06 23:51:30,076 [INFO] backend.services.training_service: [ADAPTIVE] This AI model learns and improves from new student data automatically
+2025-12-06 23:51:30,076 [INFO] backend.services.training_service: ================================================================================
+2025-12-07 02:44:39,769 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 02:44:39,770 [INFO] backend.routers.predict: NEW PREDICTION REQUEST
+2025-12-07 02:44:39,770 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 02:44:39,772 [INFO] backend.routers.predict: 📊 Field Mapping Summary:
+2025-12-07 02:44:39,772 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-12-07 02:44:39,773 [INFO] backend.routers.predict:    Mapped features: 52
+2025-12-07 02:44:39,773 [INFO] backend.routers.predict:    Required fields present: 60
+2025-12-07 02:44:39,773 [INFO] backend.routers.predict: ✅ Validation passed
+2025-12-07 02:44:39,773 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-12-07 02:44:39,773 [INFO] backend.routers.predict:    Mapped features: 52
+2025-12-07 02:44:39,773 [INFO] backend.routers.predict: 📝 Sample Mapped Data (first 10 features):
+2025-12-07 02:44:39,775 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_find_my_academic_workload_unmanageable.: 5
+2025-12-07 02:44:39,775 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_confident_in_handling_school_challenges.: 3
+2025-12-07 02:44:39,775 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_experience_conflicts_or_tension_at_home.: 4
+2025-12-07 02:44:39,775 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_the_current_mode_of_learning_affects_my_academic_motivation_and_performance.: 5
+2025-12-07 02:44:39,776 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_find_it_difficult_to_fall_asleep_because_of_academic_stress.: 5
+2025-12-07 02:44:39,776 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_emotionally_drained_at_the_end_of_the_school_day.: 2
+2025-12-07 02:44:39,776 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_emotionally_unsupported_by_my_family.: 4
+2025-12-07 02:44:39,776 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_family_does_not_understand_or_acknowledge_my_academic_struggles.: 3
+2025-12-07 02:44:39,777 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_burned_out_even_when_i_try_to_rest.: 5
+2025-12-07 02:44:39,777 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_competent_in_the_subjects_i�m_studying.: 5
+2025-12-07 02:44:39,777 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_disconnected_from_my_academic_community.: 1
+2025-12-07 02:44:39,778 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_helpless_when_i_think_about_my_academic_performance.: 4
+2025-12-07 02:44:39,778 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_feel_in_control_of_how_i_manage_my_time.: 5
+2025-12-07 02:44:39,778 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_isolated_or_alone_in_my_academic_journey.: 4
+2025-12-07 02:44:39,778 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_sometimes_feel_like_giving_up_on_my_academic_goals.: 1
+2025-12-07 02:44:39,778 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_feel_more_isolated_in_online_or_hybrid_learning_environments.: 2
+2025-12-07 02:44:39,779 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_am_currently_experiencing_financial_difficulties_that_affect_my_studies.: 1
+2025-12-07 02:44:39,779 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_usually_finish_tasks_right_before_the_deadline.: 1
+2025-12-07 02:44:39,780 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_experience_frequent_headaches_or_fatigue_during_the_semester.: 5
+2025-12-07 02:44:39,780 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_find_it_hard_to_feel_excited_about_academic_tasks.: 2
+2025-12-07 02:44:39,780 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_find_it_hard_to_maintain_a_consistent_daily_routine.: 5
+2025-12-07 02:44:39,780 [INFO] backend.routers.predict:    social_support_and_isolation_i_hesitate_to_ask_for_help_from_peers_or_instructors.: 1
+2025-12-07 02:44:39,780 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_get_irritated_or_frustrated_easily_because_of_school_pressure.: 1
+2025-12-07 02:44:39,781 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_my_learning_setup_online_hybrid_or_in_person_contributes_to_my_academic_stress.: 1
+2025-12-07 02:44:39,781 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_long_commutes_to_school_contribute_to_my_stress_and_burnout.: 4
+2025-12-07 02:44:39,781 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_lose_motivation_after_a_long_commute: 4
+2025-12-07 02:44:39,781 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_sometimes_miss_schoolwork_due_to_family_responsibilities.: 3
+2025-12-07 02:44:39,782 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_multitask_to_meet_academic_deadlines.: 3
+2025-12-07 02:44:39,782 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_home_environment_is_noisy_or_stressful_making_it_hard_to_study.: 1
+2025-12-07 02:44:39,782 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_like_i_am_not_accomplishing_anything_worthwhile_in_school.: 1
+2025-12-07 02:44:39,782 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_that_my_personal_or_home_life_affects_my_academic_performance.: 4
+2025-12-07 02:44:39,783 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_feel_physically_exhausted_even_after_taking_a_rest.: 3
+2025-12-07 02:44:39,783 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_prefer_my_current_learning_modality_over_other_options.: 4
+2025-12-07 02:44:39,783 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_often_feel_pressure_to_support_my_family_financially.: 1
+2025-12-07 02:44:39,783 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_proud_of_my_academic_achievements: 5
+2025-12-07 02:44:39,783 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_often_question_whether_my_efforts_in_school_are_worth_it.: 3
+2025-12-07 02:44:39,783 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_rarely_have_free_time_because_of_school_responsibilities.: 3
+2025-12-07 02:44:39,784 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_sacrifice_sleep_to_finish_schoolwork: 4
+2025-12-07 02:44:39,784 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_a_sense_of_dread_before_starting_school_related_task: 1
+2025-12-07 02:44:39,784 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_skip_meals_due_to_my_school_workload_or_stress.: 2
+2025-12-07 02:44:39,784 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_usually_get_less_than_6_hours_of_sleep_on_school_nights.: 2
+2025-12-07 02:44:39,785 [INFO] backend.routers.predict:    social_support_and_isolation_i_have_someone_to_talk_to_when_i_feel_burned_out.: 2
+2025-12-07 02:44:39,785 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_often_struggle_to_balance_school_and_personal_responsibilities.: 3
+2025-12-07 02:44:39,785 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_struggle_to_organize_my_academic_tasks.: 5
+2025-12-07 02:44:39,785 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_usually_study_under_pressure_or_in_last_minute_situations.: 5
+2025-12-07 02:44:39,785 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_supported_by_my_family_when_i_feel_stressed_about_school.: 4
+2025-12-07 02:44:39,785 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_traveling_to_school_affects_my_energy_and_academic_performance._: 4
+2025-12-07 02:44:39,786 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_i_am_underperforming_compared_to_my_peers: 5
+2025-12-07 02:44:39,786 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_use_a_planner_or_schedule_to_track_deadlines.: 5
+2025-12-07 02:44:39,786 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_wake_up_feeling_tired_or_unrefreshed.: 3
+2025-12-07 02:44:39,786 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_waste_time_before_starting_my_schoolwork.: 5
+2025-12-07 02:44:39,787 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_believe_my_workload_is_heavier_than_that_of_my_peers.: 2
+2025-12-07 02:44:42,355 [INFO] backend.routers.predict: 📝 Frontend request logged: F03w9tBBR17vAMbk1LWL
+2025-12-07 02:44:42,355 [INFO] backend.routers.predict: 🚀 Running prediction with mapped features...
+2025-12-07 02:44:42,356 [INFO] backend.services.prediction_service: Starting prediction 7d8cf873e433 with 52 features
+2025-12-07 02:44:42,356 [INFO] backend.services.prediction_service: Loading model and preprocessor...
+2025-12-07 02:44:42,357 [INFO] backend.services.prediction_service: Fetching active model from Firebase...
+2025-12-07 02:44:42,635 [WARNING] backend.services.prediction_service: Could not load model from Firebase: 400 The query requires an index. You can create it here: https://console.firebase.google.com/v1/r/project/burnout-system/firestore/indexes?create_composite=Ck1wcm9qZWN0cy9idXJub3V0LXN5c3RlbS9kYXRhYmFzZXMvKGRlZmF1bHQpL2NvbGxlY3Rpb25Hcm91cHMvbW9kZWxzL2luZGV4ZXMvXxABGgoKBmFjdGl2ZRABGg4KCnRyYWluZWRfYXQQAhoMCghfX25hbWVfXxAC. Falling back to local files.
+2025-12-07 02:44:42,635 [INFO] backend.services.prediction_service: Loading model from local files...
+2025-12-07 02:44:42,712 [INFO] backend.services.prediction_service: Model loaded successfully from local: RandomForestClassifier
+2025-12-07 02:44:42,712 [INFO] backend.services.prediction_service: Model loaded: RandomForestClassifier vlatest
+2025-12-07 02:44:42,712 [INFO] backend.services.prediction_service: Normalizing 52 input features...
+2025-12-07 02:44:42,712 [INFO] backend.services.prediction_service: Normalized to 52 features
+2025-12-07 02:44:42,712 [INFO] backend.services.prediction_service: Running prediction...
+2025-12-07 02:44:42,758 [WARNING] backend.services.prediction_service: High percentage of NaN values: 90.6%
+2025-12-07 02:44:42,876 [INFO] backend.services.prediction_service: Prediction: Moderate (93.9% confidence)
+2025-12-07 02:44:42,876 [INFO] backend.services.prediction_service: Generating detailed analysis report...
+2025-12-07 02:44:44,327 [INFO] backend.services.prediction_service: Prediction logged to Firestore: Mt83HScpr3sPAnuqN1i4
+2025-12-07 02:44:44,329 [INFO] backend.services.prediction_service: Prediction 7d8cf873e433 completed in 1.631s
+2025-12-07 02:44:44,329 [INFO] backend.routers.predict: ✅ Prediction successful: Moderate (confidence: 93.9%)
+2025-12-07 02:44:44,329 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 02:44:44,329 [INFO] backend.routers.predict: ✅ PREDICTION COMPLETE
+2025-12-07 02:44:44,330 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 02:53:39,269 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 02:53:39,269 [INFO] backend.routers.predict: NEW PREDICTION REQUEST
+2025-12-07 02:53:39,269 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 02:53:39,269 [INFO] backend.routers.predict: 📊 Field Mapping Summary:
+2025-12-07 02:53:39,269 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-12-07 02:53:39,269 [INFO] backend.routers.predict:    Mapped features: 52
+2025-12-07 02:53:39,269 [INFO] backend.routers.predict:    Required fields present: 60
+2025-12-07 02:53:39,269 [INFO] backend.routers.predict: ✅ Validation passed
+2025-12-07 02:53:39,269 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-12-07 02:53:39,269 [INFO] backend.routers.predict:    Mapped features: 52
+2025-12-07 02:53:39,269 [INFO] backend.routers.predict: 📝 Sample Mapped Data (first 10 features):
+2025-12-07 02:53:39,269 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_find_my_academic_workload_unmanageable.: 5
+2025-12-07 02:53:39,278 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_confident_in_handling_school_challenges.: 3
+2025-12-07 02:53:39,278 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_experience_conflicts_or_tension_at_home.: 4
+2025-12-07 02:53:39,278 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_the_current_mode_of_learning_affects_my_academic_motivation_and_performance.: 5
+2025-12-07 02:53:39,279 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_find_it_difficult_to_fall_asleep_because_of_academic_stress.: 5
+2025-12-07 02:53:39,279 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_emotionally_drained_at_the_end_of_the_school_day.: 2
+2025-12-07 02:53:39,280 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_emotionally_unsupported_by_my_family.: 4
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_family_does_not_understand_or_acknowledge_my_academic_struggles.: 3
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_burned_out_even_when_i_try_to_rest.: 5
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_competent_in_the_subjects_i�m_studying.: 5
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_disconnected_from_my_academic_community.: 1
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_helpless_when_i_think_about_my_academic_performance.: 4
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_feel_in_control_of_how_i_manage_my_time.: 5
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_isolated_or_alone_in_my_academic_journey.: 4
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_sometimes_feel_like_giving_up_on_my_academic_goals.: 1
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_feel_more_isolated_in_online_or_hybrid_learning_environments.: 2
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_am_currently_experiencing_financial_difficulties_that_affect_my_studies.: 1
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_usually_finish_tasks_right_before_the_deadline.: 1
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_experience_frequent_headaches_or_fatigue_during_the_semester.: 5
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_find_it_hard_to_feel_excited_about_academic_tasks.: 2
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_find_it_hard_to_maintain_a_consistent_daily_routine.: 5
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    social_support_and_isolation_i_hesitate_to_ask_for_help_from_peers_or_instructors.: 1
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_get_irritated_or_frustrated_easily_because_of_school_pressure.: 1
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_my_learning_setup_online_hybrid_or_in_person_contributes_to_my_academic_stress.: 1
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_long_commutes_to_school_contribute_to_my_stress_and_burnout.: 4
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_lose_motivation_after_a_long_commute: 4
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_sometimes_miss_schoolwork_due_to_family_responsibilities.: 3
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_multitask_to_meet_academic_deadlines.: 3
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_home_environment_is_noisy_or_stressful_making_it_hard_to_study.: 1
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_like_i_am_not_accomplishing_anything_worthwhile_in_school.: 1
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_that_my_personal_or_home_life_affects_my_academic_performance.: 4
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_feel_physically_exhausted_even_after_taking_a_rest.: 3
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_prefer_my_current_learning_modality_over_other_options.: 4
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_often_feel_pressure_to_support_my_family_financially.: 1
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_proud_of_my_academic_achievements: 5
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_often_question_whether_my_efforts_in_school_are_worth_it.: 3
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_rarely_have_free_time_because_of_school_responsibilities.: 3
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_sacrifice_sleep_to_finish_schoolwork: 4
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_a_sense_of_dread_before_starting_school_related_task: 1
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_skip_meals_due_to_my_school_workload_or_stress.: 2
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_usually_get_less_than_6_hours_of_sleep_on_school_nights.: 2
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    social_support_and_isolation_i_have_someone_to_talk_to_when_i_feel_burned_out.: 2
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_often_struggle_to_balance_school_and_personal_responsibilities.: 3
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_struggle_to_organize_my_academic_tasks.: 5
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_usually_study_under_pressure_or_in_last_minute_situations.: 5
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_supported_by_my_family_when_i_feel_stressed_about_school.: 4
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_traveling_to_school_affects_my_energy_and_academic_performance._: 4
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_i_am_underperforming_compared_to_my_peers: 5
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_use_a_planner_or_schedule_to_track_deadlines.: 5
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_wake_up_feeling_tired_or_unrefreshed.: 3
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_waste_time_before_starting_my_schoolwork.: 5
+2025-12-07 02:53:39,281 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_believe_my_workload_is_heavier_than_that_of_my_peers.: 2
+2025-12-07 02:53:40,765 [INFO] backend.routers.predict: 📝 Frontend request logged: ZQXhPvetD8yIXoSl7f4i
+2025-12-07 02:53:40,765 [INFO] backend.routers.predict: 🚀 Running prediction with mapped features...
+2025-12-07 02:53:40,765 [INFO] backend.services.prediction_service: Starting prediction 06f8691a5949 with 52 features
+2025-12-07 02:53:40,765 [INFO] backend.services.prediction_service: Loading model and preprocessor...
+2025-12-07 02:53:40,765 [INFO] backend.services.prediction_service: Fetching active model from Firebase...
+2025-12-07 02:53:41,082 [WARNING] backend.services.prediction_service: Could not load model from Firebase: 400 The query requires an index. You can create it here: https://console.firebase.google.com/v1/r/project/burnout-system/firestore/indexes?create_composite=Ck1wcm9qZWN0cy9idXJub3V0LXN5c3RlbS9kYXRhYmFzZXMvKGRlZmF1bHQpL2NvbGxlY3Rpb25Hcm91cHMvbW9kZWxzL2luZGV4ZXMvXxABGgoKBmFjdGl2ZRABGg4KCnRyYWluZWRfYXQQAhoMCghfX25hbWVfXxAC. Falling back to local files.
+2025-12-07 02:53:41,083 [INFO] backend.services.prediction_service: Loading model from local files...
+2025-12-07 02:53:41,166 [INFO] backend.services.prediction_service: Model loaded successfully from local: RandomForestClassifier
+2025-12-07 02:53:41,166 [INFO] backend.services.prediction_service: Model loaded: RandomForestClassifier vlatest
+2025-12-07 02:53:41,167 [INFO] backend.services.prediction_service: Normalizing 52 input features...
+2025-12-07 02:53:41,167 [INFO] backend.services.prediction_service: Normalized to 52 features
+2025-12-07 02:53:41,167 [INFO] backend.services.prediction_service: Running prediction...
+2025-12-07 02:53:41,180 [WARNING] backend.services.prediction_service: High percentage of NaN values: 90.6%
+2025-12-07 02:53:41,270 [INFO] backend.services.prediction_service: Prediction: Moderate (93.9% confidence)
+2025-12-07 02:53:41,270 [INFO] backend.services.prediction_service: Generating detailed analysis report...
+2025-12-07 02:53:42,413 [INFO] backend.services.prediction_service: Prediction logged to Firestore: bYFeFddn9C3bqe5DLajW
+2025-12-07 02:53:42,413 [INFO] backend.services.prediction_service: Prediction 06f8691a5949 completed in 1.215s
+2025-12-07 02:53:42,413 [INFO] backend.routers.predict: ✅ Prediction successful: Moderate (confidence: 93.9%)
+2025-12-07 02:53:42,413 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 02:53:42,413 [INFO] backend.routers.predict: ✅ PREDICTION COMPLETE
+2025-12-07 02:53:42,413 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict: NEW PREDICTION REQUEST
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict: 📊 Field Mapping Summary:
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    Mapped features: 52
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    Required fields present: 60
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict: ✅ Validation passed
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    Mapped features: 52
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict: 📝 Sample Mapped Data (first 10 features):
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_find_my_academic_workload_unmanageable.: 5
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_confident_in_handling_school_challenges.: 3
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_experience_conflicts_or_tension_at_home.: 4
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_the_current_mode_of_learning_affects_my_academic_motivation_and_performance.: 5
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_find_it_difficult_to_fall_asleep_because_of_academic_stress.: 5
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_emotionally_drained_at_the_end_of_the_school_day.: 2
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_emotionally_unsupported_by_my_family.: 4
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_family_does_not_understand_or_acknowledge_my_academic_struggles.: 3
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_burned_out_even_when_i_try_to_rest.: 5
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_competent_in_the_subjects_i�m_studying.: 5
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_disconnected_from_my_academic_community.: 1
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_helpless_when_i_think_about_my_academic_performance.: 4
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_feel_in_control_of_how_i_manage_my_time.: 5
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_isolated_or_alone_in_my_academic_journey.: 4
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_sometimes_feel_like_giving_up_on_my_academic_goals.: 1
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_feel_more_isolated_in_online_or_hybrid_learning_environments.: 2
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_am_currently_experiencing_financial_difficulties_that_affect_my_studies.: 1
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_usually_finish_tasks_right_before_the_deadline.: 1
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_experience_frequent_headaches_or_fatigue_during_the_semester.: 5
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_find_it_hard_to_feel_excited_about_academic_tasks.: 2
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_find_it_hard_to_maintain_a_consistent_daily_routine.: 5
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    social_support_and_isolation_i_hesitate_to_ask_for_help_from_peers_or_instructors.: 1
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_get_irritated_or_frustrated_easily_because_of_school_pressure.: 1
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_my_learning_setup_online_hybrid_or_in_person_contributes_to_my_academic_stress.: 1
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_long_commutes_to_school_contribute_to_my_stress_and_burnout.: 4
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_lose_motivation_after_a_long_commute: 4
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_sometimes_miss_schoolwork_due_to_family_responsibilities.: 3
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_multitask_to_meet_academic_deadlines.: 3
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_home_environment_is_noisy_or_stressful_making_it_hard_to_study.: 1
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_like_i_am_not_accomplishing_anything_worthwhile_in_school.: 1
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_that_my_personal_or_home_life_affects_my_academic_performance.: 4
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_feel_physically_exhausted_even_after_taking_a_rest.: 3
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_prefer_my_current_learning_modality_over_other_options.: 4
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_often_feel_pressure_to_support_my_family_financially.: 1
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_proud_of_my_academic_achievements: 5
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_often_question_whether_my_efforts_in_school_are_worth_it.: 3
+2025-12-07 02:57:16,315 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_rarely_have_free_time_because_of_school_responsibilities.: 3
+2025-12-07 02:57:16,329 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_sacrifice_sleep_to_finish_schoolwork: 4
+2025-12-07 02:57:16,329 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_a_sense_of_dread_before_starting_school_related_task: 1
+2025-12-07 02:57:16,329 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_skip_meals_due_to_my_school_workload_or_stress.: 2
+2025-12-07 02:57:16,330 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_usually_get_less_than_6_hours_of_sleep_on_school_nights.: 2
+2025-12-07 02:57:16,330 [INFO] backend.routers.predict:    social_support_and_isolation_i_have_someone_to_talk_to_when_i_feel_burned_out.: 2
+2025-12-07 02:57:16,331 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_often_struggle_to_balance_school_and_personal_responsibilities.: 3
+2025-12-07 02:57:16,331 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_struggle_to_organize_my_academic_tasks.: 5
+2025-12-07 02:57:16,331 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_usually_study_under_pressure_or_in_last_minute_situations.: 5
+2025-12-07 02:57:16,331 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_supported_by_my_family_when_i_feel_stressed_about_school.: 4
+2025-12-07 02:57:16,331 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_traveling_to_school_affects_my_energy_and_academic_performance._: 4
+2025-12-07 02:57:16,331 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_i_am_underperforming_compared_to_my_peers: 5
+2025-12-07 02:57:16,331 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_use_a_planner_or_schedule_to_track_deadlines.: 5
+2025-12-07 02:57:16,331 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_wake_up_feeling_tired_or_unrefreshed.: 3
+2025-12-07 02:57:16,331 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_waste_time_before_starting_my_schoolwork.: 5
+2025-12-07 02:57:16,331 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_believe_my_workload_is_heavier_than_that_of_my_peers.: 2
+2025-12-07 02:57:18,504 [INFO] backend.routers.predict: 📝 Frontend request logged: AjYa9S53DnpDhi8yDtdg
+2025-12-07 02:57:18,505 [INFO] backend.routers.predict: 🚀 Running prediction with mapped features...
+2025-12-07 02:57:18,505 [INFO] backend.services.prediction_service: Starting prediction e80a3ef069bd with 52 features
+2025-12-07 02:57:18,505 [INFO] backend.services.prediction_service: Loading model and preprocessor...
+2025-12-07 02:57:18,505 [INFO] backend.services.prediction_service: Fetching active model from Firebase...
+2025-12-07 02:57:18,784 [WARNING] backend.services.prediction_service: Could not load model from Firebase: 400 The query requires an index. You can create it here: https://console.firebase.google.com/v1/r/project/burnout-system/firestore/indexes?create_composite=Ck1wcm9qZWN0cy9idXJub3V0LXN5c3RlbS9kYXRhYmFzZXMvKGRlZmF1bHQpL2NvbGxlY3Rpb25Hcm91cHMvbW9kZWxzL2luZGV4ZXMvXxABGgoKBmFjdGl2ZRABGg4KCnRyYWluZWRfYXQQAhoMCghfX25hbWVfXxAC. Falling back to local files.
+2025-12-07 02:57:18,795 [INFO] backend.services.prediction_service: Loading model from local files...
+2025-12-07 02:57:18,864 [INFO] backend.services.prediction_service: Model loaded successfully from local: RandomForestClassifier
+2025-12-07 02:57:18,864 [INFO] backend.services.prediction_service: Model loaded: RandomForestClassifier vlatest
+2025-12-07 02:57:18,864 [INFO] backend.services.prediction_service: Normalizing 52 input features...
+2025-12-07 02:57:18,864 [INFO] backend.services.prediction_service: Normalized to 52 features
+2025-12-07 02:57:18,864 [INFO] backend.services.prediction_service: Running prediction...
+2025-12-07 02:57:18,887 [WARNING] backend.services.prediction_service: High percentage of NaN values: 90.6%
+2025-12-07 02:57:18,979 [INFO] backend.services.prediction_service: Prediction: Moderate (93.9% confidence)
+2025-12-07 02:57:18,981 [INFO] backend.services.prediction_service: Generating detailed analysis report...
+2025-12-07 02:57:20,113 [INFO] backend.services.prediction_service: Prediction logged to Firestore: jfSsK6iROuazUv9Oqtcu
+2025-12-07 02:57:20,113 [INFO] backend.services.prediction_service: Prediction e80a3ef069bd completed in 1.159s
+2025-12-07 02:57:20,113 [INFO] backend.routers.predict: ✅ Prediction successful: Moderate (confidence: 93.9%)
+2025-12-07 02:57:20,113 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 02:57:20,113 [INFO] backend.routers.predict: ✅ PREDICTION COMPLETE
+2025-12-07 02:57:20,113 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:31:56,259 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:31:56,260 [INFO] backend.routers.predict: NEW PREDICTION REQUEST
+2025-12-07 03:31:56,260 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:31:56,261 [INFO] backend.routers.predict: 📊 Field Mapping Summary:
+2025-12-07 03:31:56,261 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-12-07 03:31:56,261 [INFO] backend.routers.predict:    Mapped features: 52
+2025-12-07 03:31:56,261 [INFO] backend.routers.predict:    Required fields present: 60
+2025-12-07 03:31:56,261 [INFO] backend.routers.predict: ✅ Validation passed
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    Mapped features: 52
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict: 📝 Sample Mapped Data (first 10 features):
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_find_my_academic_workload_unmanageable.: 5
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_confident_in_handling_school_challenges.: 3
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_experience_conflicts_or_tension_at_home.: 4
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_the_current_mode_of_learning_affects_my_academic_motivation_and_performance.: 5
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_find_it_difficult_to_fall_asleep_because_of_academic_stress.: 5
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_emotionally_drained_at_the_end_of_the_school_day.: 2
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_emotionally_unsupported_by_my_family.: 4
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_family_does_not_understand_or_acknowledge_my_academic_struggles.: 3
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_burned_out_even_when_i_try_to_rest.: 5
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_competent_in_the_subjects_i�m_studying.: 5
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_disconnected_from_my_academic_community.: 1
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_helpless_when_i_think_about_my_academic_performance.: 4
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_feel_in_control_of_how_i_manage_my_time.: 5
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_isolated_or_alone_in_my_academic_journey.: 4
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_sometimes_feel_like_giving_up_on_my_academic_goals.: 1
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_feel_more_isolated_in_online_or_hybrid_learning_environments.: 2
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_am_currently_experiencing_financial_difficulties_that_affect_my_studies.: 1
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_usually_finish_tasks_right_before_the_deadline.: 1
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_experience_frequent_headaches_or_fatigue_during_the_semester.: 5
+2025-12-07 03:31:56,265 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_find_it_hard_to_feel_excited_about_academic_tasks.: 2
+2025-12-07 03:31:56,276 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_find_it_hard_to_maintain_a_consistent_daily_routine.: 5
+2025-12-07 03:31:56,276 [INFO] backend.routers.predict:    social_support_and_isolation_i_hesitate_to_ask_for_help_from_peers_or_instructors.: 1
+2025-12-07 03:31:56,276 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_get_irritated_or_frustrated_easily_because_of_school_pressure.: 1
+2025-12-07 03:31:56,277 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_my_learning_setup_online_hybrid_or_in_person_contributes_to_my_academic_stress.: 1
+2025-12-07 03:31:56,277 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_long_commutes_to_school_contribute_to_my_stress_and_burnout.: 4
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_lose_motivation_after_a_long_commute: 4
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_sometimes_miss_schoolwork_due_to_family_responsibilities.: 3
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_multitask_to_meet_academic_deadlines.: 3
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_home_environment_is_noisy_or_stressful_making_it_hard_to_study.: 1
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_like_i_am_not_accomplishing_anything_worthwhile_in_school.: 1
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_that_my_personal_or_home_life_affects_my_academic_performance.: 4
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_feel_physically_exhausted_even_after_taking_a_rest.: 3
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_prefer_my_current_learning_modality_over_other_options.: 4
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_often_feel_pressure_to_support_my_family_financially.: 1
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_proud_of_my_academic_achievements: 5
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_often_question_whether_my_efforts_in_school_are_worth_it.: 3
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_rarely_have_free_time_because_of_school_responsibilities.: 3
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_sacrifice_sleep_to_finish_schoolwork: 4
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_a_sense_of_dread_before_starting_school_related_task: 1
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_skip_meals_due_to_my_school_workload_or_stress.: 2
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_usually_get_less_than_6_hours_of_sleep_on_school_nights.: 2
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    social_support_and_isolation_i_have_someone_to_talk_to_when_i_feel_burned_out.: 2
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_often_struggle_to_balance_school_and_personal_responsibilities.: 3
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_struggle_to_organize_my_academic_tasks.: 5
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_usually_study_under_pressure_or_in_last_minute_situations.: 5
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_supported_by_my_family_when_i_feel_stressed_about_school.: 4
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_traveling_to_school_affects_my_energy_and_academic_performance._: 4
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_i_am_underperforming_compared_to_my_peers: 5
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_use_a_planner_or_schedule_to_track_deadlines.: 5
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_wake_up_feeling_tired_or_unrefreshed.: 3
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_waste_time_before_starting_my_schoolwork.: 5
+2025-12-07 03:31:56,278 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_believe_my_workload_is_heavier_than_that_of_my_peers.: 2
+2025-12-07 03:31:58,411 [INFO] backend.routers.predict: 📝 Frontend request logged: phluTmpuuxn2ODxdyLnN
+2025-12-07 03:31:58,411 [INFO] backend.routers.predict: 🚀 Running prediction with mapped features...
+2025-12-07 03:31:58,415 [INFO] backend.services.prediction_service: Starting prediction d656249649a5 with 52 features
+2025-12-07 03:31:58,415 [INFO] backend.services.prediction_service: Loading model and preprocessor...
+2025-12-07 03:31:58,415 [INFO] backend.services.prediction_service: Fetching active model from Firebase...
+2025-12-07 03:31:58,677 [WARNING] backend.services.prediction_service: Could not load model from Firebase: 400 The query requires an index. You can create it here: https://console.firebase.google.com/v1/r/project/burnout-system/firestore/indexes?create_composite=Ck1wcm9qZWN0cy9idXJub3V0LXN5c3RlbS9kYXRhYmFzZXMvKGRlZmF1bHQpL2NvbGxlY3Rpb25Hcm91cHMvbW9kZWxzL2luZGV4ZXMvXxABGgoKBmFjdGl2ZRABGg4KCnRyYWluZWRfYXQQAhoMCghfX25hbWVfXxAC. Falling back to local files.
+2025-12-07 03:31:58,677 [INFO] backend.services.prediction_service: Loading model from local files...
+2025-12-07 03:31:58,744 [INFO] backend.services.prediction_service: Model loaded successfully from local: RandomForestClassifier
+2025-12-07 03:31:58,744 [INFO] backend.services.prediction_service: Model loaded: RandomForestClassifier vlatest
+2025-12-07 03:31:58,744 [INFO] backend.services.prediction_service: Normalizing 52 input features...
+2025-12-07 03:31:58,744 [INFO] backend.services.prediction_service: Normalized to 52 features
+2025-12-07 03:31:58,744 [INFO] backend.services.prediction_service: Running prediction...
+2025-12-07 03:31:58,782 [WARNING] backend.services.prediction_service: High percentage of NaN values: 90.6%
+2025-12-07 03:31:58,871 [INFO] backend.services.prediction_service: Prediction: Moderate (93.9% confidence)
+2025-12-07 03:31:58,872 [INFO] backend.services.prediction_service: Generating detailed analysis report...
+2025-12-07 03:31:59,961 [INFO] backend.services.prediction_service: Prediction logged to Firestore: 30ghjZiCEpz61aAbTM15
+2025-12-07 03:31:59,976 [INFO] backend.services.prediction_service: Prediction d656249649a5 completed in 1.140s
+2025-12-07 03:31:59,977 [INFO] backend.routers.predict: ✅ Prediction successful: Moderate (confidence: 93.9%)
+2025-12-07 03:31:59,977 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:31:59,978 [INFO] backend.routers.predict: ✅ PREDICTION COMPLETE
+2025-12-07 03:31:59,978 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:33:26,637 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:33:26,637 [INFO] backend.routers.predict: NEW PREDICTION REQUEST
+2025-12-07 03:33:26,637 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:33:26,637 [INFO] backend.routers.predict: 📊 Field Mapping Summary:
+2025-12-07 03:33:26,637 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-12-07 03:33:26,637 [INFO] backend.routers.predict:    Mapped features: 52
+2025-12-07 03:33:26,643 [INFO] backend.routers.predict:    Required fields present: 60
+2025-12-07 03:33:26,643 [INFO] backend.routers.predict: ✅ Validation passed
+2025-12-07 03:33:26,643 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-12-07 03:33:26,644 [INFO] backend.routers.predict:    Mapped features: 52
+2025-12-07 03:33:26,644 [INFO] backend.routers.predict: 📝 Sample Mapped Data (first 10 features):
+2025-12-07 03:33:26,644 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_find_my_academic_workload_unmanageable.: 5
+2025-12-07 03:33:26,644 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_confident_in_handling_school_challenges.: 3
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_experience_conflicts_or_tension_at_home.: 4
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_the_current_mode_of_learning_affects_my_academic_motivation_and_performance.: 5
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_find_it_difficult_to_fall_asleep_because_of_academic_stress.: 5
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_emotionally_drained_at_the_end_of_the_school_day.: 2
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_emotionally_unsupported_by_my_family.: 4
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_family_does_not_understand_or_acknowledge_my_academic_struggles.: 3
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_burned_out_even_when_i_try_to_rest.: 5
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_competent_in_the_subjects_i�m_studying.: 5
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_disconnected_from_my_academic_community.: 1
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_helpless_when_i_think_about_my_academic_performance.: 4
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_feel_in_control_of_how_i_manage_my_time.: 5
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_isolated_or_alone_in_my_academic_journey.: 4
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_sometimes_feel_like_giving_up_on_my_academic_goals.: 1
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_feel_more_isolated_in_online_or_hybrid_learning_environments.: 2
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_am_currently_experiencing_financial_difficulties_that_affect_my_studies.: 1
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_usually_finish_tasks_right_before_the_deadline.: 1
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_experience_frequent_headaches_or_fatigue_during_the_semester.: 5
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_find_it_hard_to_feel_excited_about_academic_tasks.: 2
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_find_it_hard_to_maintain_a_consistent_daily_routine.: 5
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    social_support_and_isolation_i_hesitate_to_ask_for_help_from_peers_or_instructors.: 1
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_get_irritated_or_frustrated_easily_because_of_school_pressure.: 1
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_my_learning_setup_online_hybrid_or_in_person_contributes_to_my_academic_stress.: 1
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_long_commutes_to_school_contribute_to_my_stress_and_burnout.: 4
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_lose_motivation_after_a_long_commute: 4
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_sometimes_miss_schoolwork_due_to_family_responsibilities.: 3
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_multitask_to_meet_academic_deadlines.: 3
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_home_environment_is_noisy_or_stressful_making_it_hard_to_study.: 1
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_like_i_am_not_accomplishing_anything_worthwhile_in_school.: 1
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_that_my_personal_or_home_life_affects_my_academic_performance.: 4
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_feel_physically_exhausted_even_after_taking_a_rest.: 3
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_prefer_my_current_learning_modality_over_other_options.: 4
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_often_feel_pressure_to_support_my_family_financially.: 1
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_proud_of_my_academic_achievements: 5
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_often_question_whether_my_efforts_in_school_are_worth_it.: 3
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_rarely_have_free_time_because_of_school_responsibilities.: 3
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_sacrifice_sleep_to_finish_schoolwork: 4
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_a_sense_of_dread_before_starting_school_related_task: 1
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_skip_meals_due_to_my_school_workload_or_stress.: 2
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_usually_get_less_than_6_hours_of_sleep_on_school_nights.: 2
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    social_support_and_isolation_i_have_someone_to_talk_to_when_i_feel_burned_out.: 2
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_often_struggle_to_balance_school_and_personal_responsibilities.: 3
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_struggle_to_organize_my_academic_tasks.: 5
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_usually_study_under_pressure_or_in_last_minute_situations.: 5
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_supported_by_my_family_when_i_feel_stressed_about_school.: 4
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_traveling_to_school_affects_my_energy_and_academic_performance._: 4
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_i_am_underperforming_compared_to_my_peers: 5
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_use_a_planner_or_schedule_to_track_deadlines.: 5
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_wake_up_feeling_tired_or_unrefreshed.: 3
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_waste_time_before_starting_my_schoolwork.: 5
+2025-12-07 03:33:26,645 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_believe_my_workload_is_heavier_than_that_of_my_peers.: 2
+2025-12-07 03:33:28,656 [INFO] backend.routers.predict: 📝 Frontend request logged: DJmFpvR7Pb4w7bkfmpTb
+2025-12-07 03:33:28,657 [INFO] backend.routers.predict: 🚀 Running prediction with mapped features...
+2025-12-07 03:33:28,657 [INFO] backend.services.prediction_service: Starting prediction bbcdb6eb4460 with 52 features
+2025-12-07 03:33:28,658 [INFO] backend.services.prediction_service: Loading model and preprocessor...
+2025-12-07 03:33:28,658 [INFO] backend.services.prediction_service: Fetching active model from Firebase...
+2025-12-07 03:33:28,926 [WARNING] backend.services.prediction_service: Could not load model from Firebase: 400 The query requires an index. You can create it here: https://console.firebase.google.com/v1/r/project/burnout-system/firestore/indexes?create_composite=Ck1wcm9qZWN0cy9idXJub3V0LXN5c3RlbS9kYXRhYmFzZXMvKGRlZmF1bHQpL2NvbGxlY3Rpb25Hcm91cHMvbW9kZWxzL2luZGV4ZXMvXxABGgoKBmFjdGl2ZRABGg4KCnRyYWluZWRfYXQQAhoMCghfX25hbWVfXxAC. Falling back to local files.
+2025-12-07 03:33:28,926 [INFO] backend.services.prediction_service: Loading model from local files...
+2025-12-07 03:33:28,970 [INFO] backend.services.prediction_service: Model loaded successfully from local: RandomForestClassifier
+2025-12-07 03:33:28,970 [INFO] backend.services.prediction_service: Model loaded: RandomForestClassifier vlatest
+2025-12-07 03:33:28,970 [INFO] backend.services.prediction_service: Normalizing 52 input features...
+2025-12-07 03:33:28,970 [INFO] backend.services.prediction_service: Normalized to 52 features
+2025-12-07 03:33:28,970 [INFO] backend.services.prediction_service: Running prediction...
+2025-12-07 03:33:28,977 [WARNING] backend.services.prediction_service: High percentage of NaN values: 90.6%
+2025-12-07 03:33:29,039 [INFO] backend.services.prediction_service: Prediction: Moderate (93.9% confidence)
+2025-12-07 03:33:29,039 [INFO] backend.services.prediction_service: Generating detailed analysis report...
+2025-12-07 03:33:29,861 [INFO] backend.services.prediction_service: Prediction logged to Firestore: NsHqhk0t6UYt3eWElUxu
+2025-12-07 03:33:29,861 [INFO] backend.services.prediction_service: Prediction bbcdb6eb4460 completed in 0.720s
+2025-12-07 03:33:29,861 [INFO] backend.routers.predict: ✅ Prediction successful: Moderate (confidence: 93.9%)
+2025-12-07 03:33:29,861 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:33:29,861 [INFO] backend.routers.predict: ✅ PREDICTION COMPLETE
+2025-12-07 03:33:29,861 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:34:12,696 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:34:12,696 [INFO] backend.routers.predict: NEW PREDICTION REQUEST
+2025-12-07 03:34:12,696 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:34:12,696 [INFO] backend.routers.predict: 📊 Field Mapping Summary:
+2025-12-07 03:34:12,696 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-12-07 03:34:12,696 [INFO] backend.routers.predict:    Mapped features: 52
+2025-12-07 03:34:12,696 [INFO] backend.routers.predict:    Required fields present: 60
+2025-12-07 03:34:12,708 [INFO] backend.routers.predict: ✅ Validation passed
+2025-12-07 03:34:12,708 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-12-07 03:34:12,708 [INFO] backend.routers.predict:    Mapped features: 52
+2025-12-07 03:34:12,708 [INFO] backend.routers.predict: 📝 Sample Mapped Data (first 10 features):
+2025-12-07 03:34:12,708 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_find_my_academic_workload_unmanageable.: 5
+2025-12-07 03:34:12,708 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_confident_in_handling_school_challenges.: 3
+2025-12-07 03:34:12,708 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_experience_conflicts_or_tension_at_home.: 4
+2025-12-07 03:34:12,710 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_the_current_mode_of_learning_affects_my_academic_motivation_and_performance.: 5
+2025-12-07 03:34:12,711 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_find_it_difficult_to_fall_asleep_because_of_academic_stress.: 5
+2025-12-07 03:34:12,711 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_emotionally_drained_at_the_end_of_the_school_day.: 2
+2025-12-07 03:34:12,711 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_emotionally_unsupported_by_my_family.: 4
+2025-12-07 03:34:12,711 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_family_does_not_understand_or_acknowledge_my_academic_struggles.: 3
+2025-12-07 03:34:12,711 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_burned_out_even_when_i_try_to_rest.: 5
+2025-12-07 03:34:12,711 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_competent_in_the_subjects_i�m_studying.: 5
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_disconnected_from_my_academic_community.: 1
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_helpless_when_i_think_about_my_academic_performance.: 4
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_feel_in_control_of_how_i_manage_my_time.: 5
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_isolated_or_alone_in_my_academic_journey.: 4
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_sometimes_feel_like_giving_up_on_my_academic_goals.: 1
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_feel_more_isolated_in_online_or_hybrid_learning_environments.: 2
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_am_currently_experiencing_financial_difficulties_that_affect_my_studies.: 1
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_usually_finish_tasks_right_before_the_deadline.: 1
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_experience_frequent_headaches_or_fatigue_during_the_semester.: 5
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_find_it_hard_to_feel_excited_about_academic_tasks.: 2
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_find_it_hard_to_maintain_a_consistent_daily_routine.: 5
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    social_support_and_isolation_i_hesitate_to_ask_for_help_from_peers_or_instructors.: 1
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_get_irritated_or_frustrated_easily_because_of_school_pressure.: 1
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_my_learning_setup_online_hybrid_or_in_person_contributes_to_my_academic_stress.: 1
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_long_commutes_to_school_contribute_to_my_stress_and_burnout.: 4
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_lose_motivation_after_a_long_commute: 4
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_sometimes_miss_schoolwork_due_to_family_responsibilities.: 3
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_multitask_to_meet_academic_deadlines.: 3
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_home_environment_is_noisy_or_stressful_making_it_hard_to_study.: 1
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_like_i_am_not_accomplishing_anything_worthwhile_in_school.: 1
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_that_my_personal_or_home_life_affects_my_academic_performance.: 4
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_feel_physically_exhausted_even_after_taking_a_rest.: 3
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_prefer_my_current_learning_modality_over_other_options.: 4
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_often_feel_pressure_to_support_my_family_financially.: 1
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_proud_of_my_academic_achievements: 5
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_often_question_whether_my_efforts_in_school_are_worth_it.: 3
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_rarely_have_free_time_because_of_school_responsibilities.: 3
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_sacrifice_sleep_to_finish_schoolwork: 4
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_a_sense_of_dread_before_starting_school_related_task: 1
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_skip_meals_due_to_my_school_workload_or_stress.: 2
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_usually_get_less_than_6_hours_of_sleep_on_school_nights.: 2
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    social_support_and_isolation_i_have_someone_to_talk_to_when_i_feel_burned_out.: 2
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_often_struggle_to_balance_school_and_personal_responsibilities.: 3
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_struggle_to_organize_my_academic_tasks.: 5
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_usually_study_under_pressure_or_in_last_minute_situations.: 5
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_supported_by_my_family_when_i_feel_stressed_about_school.: 4
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_traveling_to_school_affects_my_energy_and_academic_performance._: 4
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_i_am_underperforming_compared_to_my_peers: 5
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_use_a_planner_or_schedule_to_track_deadlines.: 5
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_wake_up_feeling_tired_or_unrefreshed.: 3
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_waste_time_before_starting_my_schoolwork.: 5
+2025-12-07 03:34:12,712 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_believe_my_workload_is_heavier_than_that_of_my_peers.: 2
+2025-12-07 03:34:14,947 [INFO] backend.routers.predict: 📝 Frontend request logged: IF95sahIuIUUm7UCDUpc
+2025-12-07 03:34:14,947 [INFO] backend.routers.predict: 🚀 Running prediction with mapped features...
+2025-12-07 03:34:14,949 [INFO] backend.services.prediction_service: Starting prediction 2f9a0dec07a8 with 52 features
+2025-12-07 03:34:14,949 [INFO] backend.services.prediction_service: Loading model and preprocessor...
+2025-12-07 03:34:14,949 [INFO] backend.services.prediction_service: Fetching active model from Firebase...
+2025-12-07 03:34:15,212 [WARNING] backend.services.prediction_service: Could not load model from Firebase: 400 The query requires an index. You can create it here: https://console.firebase.google.com/v1/r/project/burnout-system/firestore/indexes?create_composite=Ck1wcm9qZWN0cy9idXJub3V0LXN5c3RlbS9kYXRhYmFzZXMvKGRlZmF1bHQpL2NvbGxlY3Rpb25Hcm91cHMvbW9kZWxzL2luZGV4ZXMvXxABGgoKBmFjdGl2ZRABGg4KCnRyYWluZWRfYXQQAhoMCghfX25hbWVfXxAC. Falling back to local files.
+2025-12-07 03:34:15,212 [INFO] backend.services.prediction_service: Loading model from local files...
+2025-12-07 03:34:15,299 [INFO] backend.services.prediction_service: Model loaded successfully from local: RandomForestClassifier
+2025-12-07 03:34:15,299 [INFO] backend.services.prediction_service: Model loaded: RandomForestClassifier vlatest
+2025-12-07 03:34:15,299 [INFO] backend.services.prediction_service: Normalizing 52 input features...
+2025-12-07 03:34:15,299 [INFO] backend.services.prediction_service: Normalized to 52 features
+2025-12-07 03:34:15,299 [INFO] backend.services.prediction_service: Running prediction...
+2025-12-07 03:34:15,312 [WARNING] backend.services.prediction_service: High percentage of NaN values: 90.6%
+2025-12-07 03:34:15,386 [INFO] backend.services.prediction_service: Prediction: Moderate (93.9% confidence)
+2025-12-07 03:34:15,386 [INFO] backend.services.prediction_service: Generating detailed analysis report...
+2025-12-07 03:34:16,577 [INFO] backend.services.prediction_service: Prediction logged to Firestore: 4mqSn6btobWzQbUPTQrW
+2025-12-07 03:34:16,578 [INFO] backend.services.prediction_service: Prediction 2f9a0dec07a8 completed in 1.281s
+2025-12-07 03:34:16,578 [INFO] backend.routers.predict: ✅ Prediction successful: Moderate (confidence: 93.9%)
+2025-12-07 03:34:16,579 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:34:16,579 [INFO] backend.routers.predict: ✅ PREDICTION COMPLETE
+2025-12-07 03:34:16,579 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:45:05,580 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:45:05,580 [INFO] backend.routers.predict: NEW PREDICTION REQUEST
+2025-12-07 03:45:05,580 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:45:05,580 [INFO] backend.routers.predict: 📊 Field Mapping Summary:
+2025-12-07 03:45:05,580 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-12-07 03:45:05,580 [INFO] backend.routers.predict:    Mapped features: 52
+2025-12-07 03:45:05,580 [INFO] backend.routers.predict:    Required fields present: 60
+2025-12-07 03:45:05,580 [INFO] backend.routers.predict: ✅ Validation passed
+2025-12-07 03:45:05,580 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-12-07 03:45:05,580 [INFO] backend.routers.predict:    Mapped features: 52
+2025-12-07 03:45:05,580 [INFO] backend.routers.predict: 📝 Sample Mapped Data (first 10 features):
+2025-12-07 03:45:05,580 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_find_my_academic_workload_unmanageable.: 2
+2025-12-07 03:45:05,580 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_confident_in_handling_school_challenges.: 5
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_experience_conflicts_or_tension_at_home.: 1
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_the_current_mode_of_learning_affects_my_academic_motivation_and_performance.: 5
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_find_it_difficult_to_fall_asleep_because_of_academic_stress.: 1
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_emotionally_drained_at_the_end_of_the_school_day.: 1
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_emotionally_unsupported_by_my_family.: 2
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_family_does_not_understand_or_acknowledge_my_academic_struggles.: 5
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_burned_out_even_when_i_try_to_rest.: 1
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_competent_in_the_subjects_i�m_studying.: 1
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_disconnected_from_my_academic_community.: 3
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_helpless_when_i_think_about_my_academic_performance.: 2
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_feel_in_control_of_how_i_manage_my_time.: 3
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_isolated_or_alone_in_my_academic_journey.: 4
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_sometimes_feel_like_giving_up_on_my_academic_goals.: 2
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_feel_more_isolated_in_online_or_hybrid_learning_environments.: 2
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_am_currently_experiencing_financial_difficulties_that_affect_my_studies.: 3
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_usually_finish_tasks_right_before_the_deadline.: 3
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_experience_frequent_headaches_or_fatigue_during_the_semester.: 1
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_find_it_hard_to_feel_excited_about_academic_tasks.: 1
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_find_it_hard_to_maintain_a_consistent_daily_routine.: 5
+2025-12-07 03:45:05,584 [INFO] backend.routers.predict:    social_support_and_isolation_i_hesitate_to_ask_for_help_from_peers_or_instructors.: 3
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_get_irritated_or_frustrated_easily_because_of_school_pressure.: 4
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_my_learning_setup_online_hybrid_or_in_person_contributes_to_my_academic_stress.: 1
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_long_commutes_to_school_contribute_to_my_stress_and_burnout.: 3
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_lose_motivation_after_a_long_commute: 3
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_sometimes_miss_schoolwork_due_to_family_responsibilities.: 3
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_multitask_to_meet_academic_deadlines.: 4
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_home_environment_is_noisy_or_stressful_making_it_hard_to_study.: 1
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_like_i_am_not_accomplishing_anything_worthwhile_in_school.: 4
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_that_my_personal_or_home_life_affects_my_academic_performance.: 5
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_feel_physically_exhausted_even_after_taking_a_rest.: 4
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_prefer_my_current_learning_modality_over_other_options.: 3
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_often_feel_pressure_to_support_my_family_financially.: 3
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_proud_of_my_academic_achievements: 2
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_often_question_whether_my_efforts_in_school_are_worth_it.: 2
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_rarely_have_free_time_because_of_school_responsibilities.: 2
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_sacrifice_sleep_to_finish_schoolwork: 1
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_a_sense_of_dread_before_starting_school_related_task: 3
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_skip_meals_due_to_my_school_workload_or_stress.: 3
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_usually_get_less_than_6_hours_of_sleep_on_school_nights.: 4
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    social_support_and_isolation_i_have_someone_to_talk_to_when_i_feel_burned_out.: 3
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_often_struggle_to_balance_school_and_personal_responsibilities.: 1
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_struggle_to_organize_my_academic_tasks.: 4
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_usually_study_under_pressure_or_in_last_minute_situations.: 2
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_supported_by_my_family_when_i_feel_stressed_about_school.: 4
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_traveling_to_school_affects_my_energy_and_academic_performance._: 5
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_i_am_underperforming_compared_to_my_peers: 1
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_use_a_planner_or_schedule_to_track_deadlines.: 1
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_wake_up_feeling_tired_or_unrefreshed.: 2
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_waste_time_before_starting_my_schoolwork.: 2
+2025-12-07 03:45:05,588 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_believe_my_workload_is_heavier_than_that_of_my_peers.: 2
+2025-12-07 03:45:06,914 [INFO] backend.routers.predict: 📝 Frontend request logged: 4ILALgSffYmroBs350oK
+2025-12-07 03:45:06,914 [INFO] backend.routers.predict: 🚀 Running prediction with mapped features...
+2025-12-07 03:45:06,914 [INFO] backend.services.prediction_service: Starting prediction 1a4986d9da45 with 52 features
+2025-12-07 03:45:06,914 [INFO] backend.services.prediction_service: Loading model and preprocessor...
+2025-12-07 03:45:06,914 [INFO] backend.services.prediction_service: Fetching active model from Firebase...
+2025-12-07 03:45:07,231 [WARNING] backend.services.prediction_service: Could not load model from Firebase: 400 The query requires an index. You can create it here: https://console.firebase.google.com/v1/r/project/burnout-system/firestore/indexes?create_composite=Ck1wcm9qZWN0cy9idXJub3V0LXN5c3RlbS9kYXRhYmFzZXMvKGRlZmF1bHQpL2NvbGxlY3Rpb25Hcm91cHMvbW9kZWxzL2luZGV4ZXMvXxABGgoKBmFjdGl2ZRABGg4KCnRyYWluZWRfYXQQAhoMCghfX25hbWVfXxAC. Falling back to local files.
+2025-12-07 03:45:07,231 [INFO] backend.services.prediction_service: Loading model from local files...
+2025-12-07 03:45:07,295 [INFO] backend.services.prediction_service: Model loaded successfully from local: RandomForestClassifier
+2025-12-07 03:45:07,296 [INFO] backend.services.prediction_service: Model loaded: RandomForestClassifier vlatest
+2025-12-07 03:45:07,296 [INFO] backend.services.prediction_service: Normalizing 52 input features...
+2025-12-07 03:45:07,297 [INFO] backend.services.prediction_service: Normalized to 52 features
+2025-12-07 03:45:07,297 [INFO] backend.services.prediction_service: Running prediction...
+2025-12-07 03:45:07,314 [WARNING] backend.services.prediction_service: High percentage of NaN values: 90.6%
+2025-12-07 03:45:07,401 [INFO] backend.services.prediction_service: Prediction: Moderate (94.1% confidence)
+2025-12-07 03:45:07,401 [INFO] backend.services.prediction_service: Generating detailed analysis report...
+2025-12-07 03:45:08,447 [INFO] backend.services.prediction_service: Prediction logged to Firestore: ngn05NZSaSksCWNhCGun
+2025-12-07 03:45:08,447 [INFO] backend.services.prediction_service: Prediction 1a4986d9da45 completed in 1.116s
+2025-12-07 03:45:08,447 [INFO] backend.routers.predict: ✅ Prediction successful: Moderate (confidence: 94.1%)
+2025-12-07 03:45:08,461 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:45:08,461 [INFO] backend.routers.predict: ✅ PREDICTION COMPLETE
+2025-12-07 03:45:08,462 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict: NEW PREDICTION REQUEST
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict: 📊 Field Mapping Summary:
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    Mapped features: 52
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    Required fields present: 60
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict: ✅ Validation passed
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    Mapped features: 52
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict: 📝 Sample Mapped Data (first 10 features):
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_find_my_academic_workload_unmanageable.: 2
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_confident_in_handling_school_challenges.: 5
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_experience_conflicts_or_tension_at_home.: 1
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_the_current_mode_of_learning_affects_my_academic_motivation_and_performance.: 5
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_find_it_difficult_to_fall_asleep_because_of_academic_stress.: 1
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_emotionally_drained_at_the_end_of_the_school_day.: 1
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_emotionally_unsupported_by_my_family.: 2
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_family_does_not_understand_or_acknowledge_my_academic_struggles.: 5
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_burned_out_even_when_i_try_to_rest.: 1
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_competent_in_the_subjects_i�m_studying.: 1
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_disconnected_from_my_academic_community.: 3
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_helpless_when_i_think_about_my_academic_performance.: 2
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_feel_in_control_of_how_i_manage_my_time.: 3
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_isolated_or_alone_in_my_academic_journey.: 4
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_sometimes_feel_like_giving_up_on_my_academic_goals.: 2
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_feel_more_isolated_in_online_or_hybrid_learning_environments.: 2
+2025-12-07 03:50:09,650 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_am_currently_experiencing_financial_difficulties_that_affect_my_studies.: 3
+2025-12-07 03:50:09,663 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_usually_finish_tasks_right_before_the_deadline.: 3
+2025-12-07 03:50:09,663 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_experience_frequent_headaches_or_fatigue_during_the_semester.: 1
+2025-12-07 03:50:09,663 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_find_it_hard_to_feel_excited_about_academic_tasks.: 1
+2025-12-07 03:50:09,663 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_find_it_hard_to_maintain_a_consistent_daily_routine.: 5
+2025-12-07 03:50:09,664 [INFO] backend.routers.predict:    social_support_and_isolation_i_hesitate_to_ask_for_help_from_peers_or_instructors.: 3
+2025-12-07 03:50:09,664 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_get_irritated_or_frustrated_easily_because_of_school_pressure.: 4
+2025-12-07 03:50:09,664 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_my_learning_setup_online_hybrid_or_in_person_contributes_to_my_academic_stress.: 1
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_long_commutes_to_school_contribute_to_my_stress_and_burnout.: 3
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_lose_motivation_after_a_long_commute: 3
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_sometimes_miss_schoolwork_due_to_family_responsibilities.: 3
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_multitask_to_meet_academic_deadlines.: 4
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_home_environment_is_noisy_or_stressful_making_it_hard_to_study.: 1
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_like_i_am_not_accomplishing_anything_worthwhile_in_school.: 4
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_that_my_personal_or_home_life_affects_my_academic_performance.: 5
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_feel_physically_exhausted_even_after_taking_a_rest.: 4
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_prefer_my_current_learning_modality_over_other_options.: 3
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_often_feel_pressure_to_support_my_family_financially.: 3
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_proud_of_my_academic_achievements: 2
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_often_question_whether_my_efforts_in_school_are_worth_it.: 2
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_rarely_have_free_time_because_of_school_responsibilities.: 2
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_sacrifice_sleep_to_finish_schoolwork: 1
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_a_sense_of_dread_before_starting_school_related_task: 3
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_skip_meals_due_to_my_school_workload_or_stress.: 3
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_usually_get_less_than_6_hours_of_sleep_on_school_nights.: 4
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    social_support_and_isolation_i_have_someone_to_talk_to_when_i_feel_burned_out.: 3
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_often_struggle_to_balance_school_and_personal_responsibilities.: 1
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_struggle_to_organize_my_academic_tasks.: 4
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_usually_study_under_pressure_or_in_last_minute_situations.: 2
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_supported_by_my_family_when_i_feel_stressed_about_school.: 4
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_traveling_to_school_affects_my_energy_and_academic_performance._: 5
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_i_am_underperforming_compared_to_my_peers: 1
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_use_a_planner_or_schedule_to_track_deadlines.: 1
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_wake_up_feeling_tired_or_unrefreshed.: 2
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_waste_time_before_starting_my_schoolwork.: 2
+2025-12-07 03:50:09,665 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_believe_my_workload_is_heavier_than_that_of_my_peers.: 2
+2025-12-07 03:50:10,948 [INFO] backend.routers.predict: 📝 Frontend request logged: UimLBAafadBCiW4w4o32
+2025-12-07 03:50:10,948 [INFO] backend.routers.predict: 🚀 Running prediction with mapped features...
+2025-12-07 03:50:10,948 [INFO] backend.services.prediction_service: Starting prediction d44b4c35719b with 52 features
+2025-12-07 03:50:10,948 [INFO] backend.services.prediction_service: Loading model and preprocessor...
+2025-12-07 03:50:10,948 [INFO] backend.services.prediction_service: Fetching active model from Firebase...
+2025-12-07 03:50:11,198 [WARNING] backend.services.prediction_service: Could not load model from Firebase: 400 The query requires an index. You can create it here: https://console.firebase.google.com/v1/r/project/burnout-system/firestore/indexes?create_composite=Ck1wcm9qZWN0cy9idXJub3V0LXN5c3RlbS9kYXRhYmFzZXMvKGRlZmF1bHQpL2NvbGxlY3Rpb25Hcm91cHMvbW9kZWxzL2luZGV4ZXMvXxABGgoKBmFjdGl2ZRABGg4KCnRyYWluZWRfYXQQAhoMCghfX25hbWVfXxAC. Falling back to local files.
+2025-12-07 03:50:11,198 [INFO] backend.services.prediction_service: Loading model from local files...
+2025-12-07 03:50:11,271 [INFO] backend.services.prediction_service: Model loaded successfully from local: RandomForestClassifier
+2025-12-07 03:50:11,272 [INFO] backend.services.prediction_service: Model loaded: RandomForestClassifier vlatest
+2025-12-07 03:50:11,272 [INFO] backend.services.prediction_service: Normalizing 52 input features...
+2025-12-07 03:50:11,273 [INFO] backend.services.prediction_service: Normalized to 52 features
+2025-12-07 03:50:11,273 [INFO] backend.services.prediction_service: Running prediction...
+2025-12-07 03:50:11,290 [WARNING] backend.services.prediction_service: High percentage of NaN values: 90.6%
+2025-12-07 03:50:11,367 [INFO] backend.services.prediction_service: Prediction: Moderate (94.1% confidence)
+2025-12-07 03:50:11,368 [INFO] backend.services.prediction_service: Generating detailed analysis report...
+2025-12-07 03:50:12,377 [INFO] backend.services.prediction_service: Prediction logged to Firestore: ZiSQHcIFXdd3D8739otL
+2025-12-07 03:50:12,379 [INFO] backend.services.prediction_service: Prediction d44b4c35719b completed in 1.100s
+2025-12-07 03:50:12,379 [INFO] backend.routers.predict: ✅ Prediction successful: Moderate (confidence: 94.1%)
+2025-12-07 03:50:12,380 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:50:12,382 [INFO] backend.routers.predict: ✅ PREDICTION COMPLETE
+2025-12-07 03:50:12,382 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict: NEW PREDICTION REQUEST
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict: 📊 Field Mapping Summary:
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    Mapped features: 52
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    Required fields present: 60
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict: ✅ Validation passed
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    Frontend fields: 60
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    Mapped features: 52
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict: 📝 Sample Mapped Data (first 10 features):
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_find_my_academic_workload_unmanageable.: 2
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_confident_in_handling_school_challenges.: 5
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_experience_conflicts_or_tension_at_home.: 1
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_the_current_mode_of_learning_affects_my_academic_motivation_and_performance.: 5
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_find_it_difficult_to_fall_asleep_because_of_academic_stress.: 1
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_emotionally_drained_at_the_end_of_the_school_day.: 1
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_emotionally_unsupported_by_my_family.: 2
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_family_does_not_understand_or_acknowledge_my_academic_struggles.: 5
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_burned_out_even_when_i_try_to_rest.: 1
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_competent_in_the_subjects_i�m_studying.: 1
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_disconnected_from_my_academic_community.: 3
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_helpless_when_i_think_about_my_academic_performance.: 2
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_feel_in_control_of_how_i_manage_my_time.: 3
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_isolated_or_alone_in_my_academic_journey.: 4
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_sometimes_feel_like_giving_up_on_my_academic_goals.: 2
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_feel_more_isolated_in_online_or_hybrid_learning_environments.: 2
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_am_currently_experiencing_financial_difficulties_that_affect_my_studies.: 3
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_usually_finish_tasks_right_before_the_deadline.: 3
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_experience_frequent_headaches_or_fatigue_during_the_semester.: 1
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_find_it_hard_to_feel_excited_about_academic_tasks.: 1
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_find_it_hard_to_maintain_a_consistent_daily_routine.: 5
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    social_support_and_isolation_i_hesitate_to_ask_for_help_from_peers_or_instructors.: 3
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_get_irritated_or_frustrated_easily_because_of_school_pressure.: 4
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_my_learning_setup_online_hybrid_or_in_person_contributes_to_my_academic_stress.: 1
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_long_commutes_to_school_contribute_to_my_stress_and_burnout.: 3
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_lose_motivation_after_a_long_commute: 3
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_sometimes_miss_schoolwork_due_to_family_responsibilities.: 3
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_multitask_to_meet_academic_deadlines.: 4
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    home_environment_and_personal_stress_my_home_environment_is_noisy_or_stressful_making_it_hard_to_study.: 1
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_like_i_am_not_accomplishing_anything_worthwhile_in_school.: 4
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_feel_that_my_personal_or_home_life_affects_my_academic_performance.: 5
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_feel_physically_exhausted_even_after_taking_a_rest.: 4
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_i_prefer_my_current_learning_modality_over_other_options.: 3
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    home_environment_and_personal_stress_i_often_feel_pressure_to_support_my_family_financially.: 3
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_proud_of_my_academic_achievements: 2
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_often_question_whether_my_efforts_in_school_are_worth_it.: 2
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_rarely_have_free_time_because_of_school_responsibilities.: 2
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_often_sacrifice_sleep_to_finish_schoolwork: 1
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    emotional_state_and_burnout_indicators_i_feel_a_sense_of_dread_before_starting_school_related_task: 3
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_skip_meals_due_to_my_school_workload_or_stress.: 3
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_usually_get_less_than_6_hours_of_sleep_on_school_nights.: 4
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    social_support_and_isolation_i_have_someone_to_talk_to_when_i_feel_burned_out.: 3
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_often_struggle_to_balance_school_and_personal_responsibilities.: 1
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_struggle_to_organize_my_academic_tasks.: 4
+2025-12-07 03:54:13,917 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_usually_study_under_pressure_or_in_last_minute_situations.: 2
+2025-12-07 03:54:13,932 [INFO] backend.routers.predict:    social_support_and_isolation_i_feel_supported_by_my_family_when_i_feel_stressed_about_school.: 4
+2025-12-07 03:54:13,932 [INFO] backend.routers.predict:    learning_modality_and_academic_impact_traveling_to_school_affects_my_energy_and_academic_performance._: 5
+2025-12-07 03:54:13,932 [INFO] backend.routers.predict:    motivation_and_personal_accomplishment_i_feel_i_am_underperforming_compared_to_my_peers: 1
+2025-12-07 03:54:13,932 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_use_a_planner_or_schedule_to_track_deadlines.: 1
+2025-12-07 03:54:13,933 [INFO] backend.routers.predict:    sleep_patterns_and_physical_health_i_often_wake_up_feeling_tired_or_unrefreshed.: 2
+2025-12-07 03:54:13,933 [INFO] backend.routers.predict:    time_management_and_daily_routine_i_waste_time_before_starting_my_schoolwork.: 2
+2025-12-07 03:54:13,933 [INFO] backend.routers.predict:    academic_workload_and_study_habits_i_believe_my_workload_is_heavier_than_that_of_my_peers.: 2
+2025-12-07 03:54:14,277 [INFO] backend.routers.predict: 📝 Frontend request logged: PohD2lOvwmpW8fUQSWZL
+2025-12-07 03:54:14,277 [INFO] backend.routers.predict: 🚀 Running prediction with mapped features...
+2025-12-07 03:54:14,277 [INFO] backend.services.prediction_service: Starting prediction 0dee2a0b0736 with 52 features
+2025-12-07 03:54:14,277 [INFO] backend.services.prediction_service: Loading model and preprocessor...
+2025-12-07 03:54:14,277 [INFO] backend.services.prediction_service: Using cached model
+2025-12-07 03:54:14,277 [INFO] backend.services.prediction_service: Model loaded: RandomForestClassifier vlatest
+2025-12-07 03:54:14,277 [INFO] backend.services.prediction_service: Normalizing 52 input features...
+2025-12-07 03:54:14,277 [INFO] backend.services.prediction_service: Normalized to 52 features
+2025-12-07 03:54:14,277 [INFO] backend.services.prediction_service: Running prediction...
+2025-12-07 03:54:14,299 [WARNING] backend.services.prediction_service: High percentage of NaN values: 90.6%
+2025-12-07 03:54:14,390 [INFO] backend.services.prediction_service: Prediction: Moderate (94.1% confidence)
+2025-12-07 03:54:14,392 [INFO] backend.services.prediction_service: Generating detailed analysis report...
+2025-12-07 03:54:16,282 [INFO] backend.services.prediction_service: Prediction logged to Firestore: 4IWCfUzCO5lDVSlneKhS
+2025-12-07 03:54:16,282 [INFO] backend.services.prediction_service: Prediction 0dee2a0b0736 completed in 0.772s
+2025-12-07 03:54:16,282 [INFO] backend.routers.predict: ✅ Prediction successful: Moderate (confidence: 94.1%)
+2025-12-07 03:54:16,282 [INFO] backend.routers.predict: ================================================================================
+2025-12-07 03:54:16,282 [INFO] backend.routers.predict: ✅ PREDICTION COMPLETE
+2025-12-07 03:54:16,282 [INFO] backend.routers.predict: ================================================================================
