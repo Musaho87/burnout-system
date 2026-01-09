@@ -1,0 +1,179 @@
+# BURNOUT PREDICTION MODEL - DATA PROCESSING EXPLANATION
+
+## OVERVIEW
+This system processes student survey data to predict burnout risk levels (Low/Moderate/High).
+The pipeline cleans raw survey responses, converts them to numerical features, and trains
+an adaptive machine learning model.
+
+## SAMPLE RAW DATA (INPUT)
+Here's how student survey data typically looks:
+
+### Original CSV Data (Before Processing):
+
+Timestamp,Name,Institution,Q1_Stress_Level,Q2_Motivation,Q3_Sleep_Hours,Q4_Workload,Burnout_Risk
+2024-01-15 10:30,John Doe,University A,"Agree","Disagree",6,"Strongly Agree","High"
+2024-01-15 11:15,Jane Smith,University B,"Neutral","Agree",7,"Agree","Moderate"
+2024-01-15 12:00,Bob Johnson,University C,"Strongly Disagree","Neutral",5,"Disagree","Low"
+2024-01-16 09:45,Alice Brown,University A,"Agree","Strongly Agree",4,"Strongly Agree","High"
+
+
+### Problem with Raw Data:
+1. **Text responses** (Agree/Disagree/Neutral)
+2. **Mixed data types** (numbers, text, dates)
+3. **Metadata columns** (Name, Institution, Timestamp)
+4. **Inconsistent formatting**
+
+## DATA CLEANING PROCESS
+
+### Step 1: Column Normalization
+Columns are renamed to lowercase with underscores:
+- `Q1_Stress_Level` → `q1_stress_level`
+- `Burnout_Risk` → `burnout_risk`
+
+### Step 2: Metadata Removal
+Columns like `timestamp`, `name`, `institution` are removed (not useful for prediction).
+
+### Step 3: Likert Scale Conversion
+Text responses converted to numbers:
+
+"Strongly Disagree" → 1
+"Disagree" → 2
+"Neutral" → 3
+"Agree" → 4
+"Strongly Agree" → 5
+
+
+### Step 4: Burnout Label Derivation
+If burnout labels aren't provided, the system calculates them based on:
+- Average of all survey responses
+- Statistical thresholds (25th, 50th, 75th percentiles)
+
+## PROCESSED DATA (OUTPUT)
+
+### After Cleaning:
+
+
+### Step 4: Burnout Label Derivation
+If burnout labels aren't provided, the system calculates them based on:
+- Average of all survey responses
+- Statistical thresholds (25th, 50th, 75th percentiles)
+
+## PROCESSED DATA (OUTPUT)
+
+### After Cleaning:
+
+q1_stress_level,q2_motivation,q3_sleep_hours,q4_workload,burnout_level
+4,2,6,5,"High"
+3,4,7,4,"Moderate"
+1,3,5,2,"Low"
+4,5,4,5,"High"
+
+
+### Numerical Features Ready for Training:
+
+[[4, 2, 6, 5],
+[3, 4, 7, 4],
+[1, 3, 5, 2],
+[4, 5, 4, 5]]
+
+
+### Labels (Burnout Levels):
+
+["High", "Moderate", "Low", "High"]
+
+## PREPROCESSOR.PKL CONTENTS
+The preprocessor saves all transformation logic:
+
+### Preprocessor Structure:
+```python
+{
+    'label_encoders': {
+        # Maps categorical features to numbers
+        'categorical_column': LabelEncoder(fitted on data)
+    },
+    'imputer': SimpleImputer(strategy='median'),
+    'scaler': StandardScaler(),
+    'feature_names': ['q1_stress_level', 'q2_motivation', 
+                      'q3_sleep_hours', 'q4_workload'],
+    'categorical_columns': []  # If any categorical columns exist
+}
+
+What Each Component Does:
+LabelEncoder - Converts text labels to numbers (Low→0, Moderate→1, High→2)
+
+SimpleImputer - Fills missing values with median
+
+StandardScaler - Normalizes features to mean=0, std=1
+
+feature_names - Order of features for prediction
+
+MODEL FILE (burnout_v1.pkl)
+What's Inside the Model File:
+Trained Classifier (e.g., RandomForest with optimized parameters)
+
+Feature Importance - Which survey questions matter most
+
+Class Labels - Mapping of numerical labels to burnout levels
+
+Model Metadata - Training date, version, accuracy
+
+{
+    'model_type': 'RandomForestClassifier',
+    'n_estimators': 200,
+    'max_depth': 15,
+    'feature_importances': [
+        ('q4_workload', 0.35),
+        ('q1_stress_level', 0.28),
+        ('q3_sleep_hours', 0.22),
+        ('q2_motivation', 0.15)
+    ],
+    'classes': ['Low', 'Moderate', 'High'],
+    'accuracy': 0.87,
+    'training_date': '2024-01-15T10:30:00Z',
+    'version': 1
+}
+
+PREDICTION WORKFLOW
+
+When Making a Prediction:
+
+1. Input: New student's survey responses
+
+new_student = {
+    'q1_stress_level': 'Agree',
+    'q2_motivation': 'Neutral',
+    'q3_sleep_hours': 5,
+    'q4_workload': 'Strongly Agree'
+}
+
+2. Preprocessing Steps:
+
+    Convert text to numbers: 'Agree' → 4, 'Strongly Agree' → 5
+
+    Create feature array: [4, 3, 5, 5]
+
+    Scale using saved scaler
+
+    Impute if needed (not in this case)
+
+3. Model Prediction:
+
+features_scaled = [[0.8, 0.0, -1.2, 1.5]]  # After scaling
+prediction = model.predict(features_scaled)  # Returns [2]
+confidence = model.predict_proba(features_scaled)  # [[0.1, 0.3, 0.6]]
+
+4. Output
+
+{
+    "prediction": "High",
+    "confidence": 0.60,
+    "probabilities": {
+        "Low": 0.10,
+        "Moderate": 0.30,
+        "High": 0.60
+    },
+    "key_factors": [
+        "High workload score (5/5)",
+        "Moderate-high stress level (4/5)"
+    ]
+}

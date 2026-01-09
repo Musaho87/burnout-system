@@ -11,7 +11,7 @@ from google.cloud.firestore import DocumentSnapshot
 from google.cloud.firestore_v1 import SERVER_TIMESTAMP
 
 from backend.services.data_service import export_responses_csv, fetch_all_responses
-from backend.services.training_service import train_from_csv  # <-- new training logic here
+from backend.services.training.training_service import train_from_csv  # <-- new training logic here
 from backend.services.firebase_service import db
 
 from backend.services.data_service import export_responses_csv, fetch_all_responses
@@ -72,7 +72,8 @@ def train_model(
         
         result = train_from_csv(
             description=payload.description,
-            csv_source=payload.csv_source
+            csv_source=payload.csv_source,
+            tuning_strategy='adaptive'
         )
         
         return {

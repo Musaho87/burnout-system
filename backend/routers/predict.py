@@ -107,7 +107,7 @@ REQUIRED_FIELDS = [
     # Demographics
     "name",
     "gender",
-    "year_level",
+    # "year_level",
     "institution",
     "gwa",
     "how_far_is_your_home_from_school_one_way",
